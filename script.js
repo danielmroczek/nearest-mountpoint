@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`GeoIP request failed: ${response.status}`);
       }
       const data = await response.json();
+      window.locationMethod = 'GeoIP';  // Set location method
       return {
         coords: {
           latitude: parseFloat(data.latitude),
@@ -37,7 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       navigator.geolocation.getCurrentPosition(
-        resolve,
+        (position) => {
+          window.locationMethod = 'GPS';  // Set location method
+          resolve(position);
+        },
         (error) => {
           console.log('Geolocation error, falling back to GeoIP:', error);
           getGeoIPLocation().then(resolve).catch(reject);
@@ -106,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `${mountPoint.latitude.toFixed(2)}°, ${mountPoint.longitude.toFixed(2)}°`;
     content.querySelector('.user-location').textContent = 
         `${window.userLat.toFixed(2)}°, ${window.userLon.toFixed(2)}°`;
+    content.querySelector('.location-method').textContent = window.locationMethod || 'Unknown';
 
     mountPointDetails.innerHTML = '';
     mountPointDetails.appendChild(content);

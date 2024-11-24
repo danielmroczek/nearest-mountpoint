@@ -112,6 +112,23 @@ h1 {
 .retry-button:active {
     background-color: var(--button-active);
 }
+/* 
+.footer {
+    margin-top: auto;
+    padding: 20px;
+    text-align: center;
+} */
+
+.footer a {
+    color: var(--text-color);
+    text-decoration: none;
+    opacity: 0.7;
+}
+
+.footer a:hover {
+    color: var(--primary-color);
+    opacity: 1;
+}
 
 @media (prefers-color-scheme: dark) {
     :root {
