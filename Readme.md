@@ -10,10 +10,13 @@ Try it now: [NTRIP Mount Point Finder](https://pan-danio.github.io/ntrip-nearest
 
 - 📍 Automatic geolocation detection with fallback to GeoIP
 - 🗺️ Finds the closest RTCM 3.2 mount point from the ASG-EUPOS network
+- 📋 One-click copy for mount point names
+- 📊 Table view of all available mount points sorted by distance
+- 🔍 Distance calculation for each mount point
 - 🌓 Dark/Light theme support
 - 📱 Responsive design
-- ⚡ Fast distance calculations
 - 🔄 Retry functionality for failed location attempts
+- 📍 Location method indicator (GPS/GeoIP)
 
 ## 🛠️ Tech Stack
 
