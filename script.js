@@ -51,6 +51,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Add these new functions and variables
+  let allMountPoints = [];
+  let tableVisible = false;
+
+  function toggleMountPoints() {
+    const button = document.querySelector('.show-details-button');
+    const table = document.querySelector('.mount-points-table');
+    tableVisible = !tableVisible;
+    
+    if (tableVisible) {
+      button.textContent = 'Hide mount points';
+      table.classList.add('visible');
+    } else {
+      button.textContent = 'Show all mount points';
+      table.classList.remove('visible');
+    }
+  }
+
+  function displayMountPointsTable(mountPoints, userLat, userLon) {
+    const tableTemplate = document.getElementById('mount-points-table-template');
+    const rowTemplate = document.getElementById('mount-point-row-template');
+    const table = tableTemplate.content.cloneNode(true);
+    const tbody = table.querySelector('tbody');
+
+    // Sort mount points by distance
+    mountPoints.sort((a, b) => {
+      const distA = getDistance(userLat, userLon, a.latitude, a.longitude);
+      const distB = getDistance(userLat, userLon, b.latitude, b.longitude);
+      return distA - distB;
+    });
+
+    mountPoints.forEach(point => {
+      const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
+      const row = rowTemplate.content.cloneNode(true);
+      
+      row.querySelector('.point-name').textContent = point.name;
+      row.querySelector('.point-location').textContent = 
+        `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
+      row.querySelector('.point-distance').textContent = `${distance.toFixed(1)} km`;
+      
+      tbody.appendChild(row);
+    });
+
+    // Remove existing table if present
+    const existingTable = document.querySelector('.mount-points-table');
+    if (existingTable) {
+      existingTable.remove();
+    }
+
+    // Add new table to the card
+    document.querySelector('.card').appendChild(table);
+  }
+
   async function fetchMountPoints(lat, lon) {
     try {
       const response = await fetch('mounts.json');
@@ -61,18 +114,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await response.json();
       console.log('Loaded mount points data:', data);
 
-      const mountPoints = data.streams.map(stream => ({
+      allMountPoints = data.streams.map(stream => ({
         name: stream.mountPoint,
         latitude: stream.latitude,
         longitude: stream.longitude
       }));
 
-      console.log('Processed mount points:', mountPoints);
+      console.log('Processed mount points:', allMountPoints);
 
-      const nearestMountPoint = findNearestMountPoint(mountPoints, lat, lon);
+      const nearestMountPoint = findNearestMountPoint(allMountPoints, lat, lon);
       console.log('Nearest mount point:', nearestMountPoint);
 
       displayMountPoint(nearestMountPoint);
+      displayMountPointsTable(allMountPoints, lat, lon);
     } catch (error) {
       console.error('Error loading mount points:', error);
       mountPointDetails.textContent = 'Error loading mount points data: ' + error.message;
@@ -136,31 +190,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Make retryLocation available globally
   window.retryLocation = retryLocation;
 
-  function parseSourceTable(sourceTable) {
-    const mountPoints = [];
-    const lines = sourceTable.split('\n');
-    console.log(`Parsing ${lines.length} lines from sourcetable`);
-
-    lines.forEach((line, index) => {
-      if (line.startsWith('STR;')) {
-        const fields = line.split(';');
-        if (fields.length >= 12) {
-          const point = {
-            name: fields[1],
-            latitude: parseFloat(fields[9]),
-            longitude: parseFloat(fields[10])
-          };
-          console.log(`Found mount point at line ${index}:`, point);
-          mountPoints.push(point);
-        } else {
-          console.warn(`Invalid STR line ${index}, fields: ${fields.length}`);
-        }
-      }
-    });
-
-    return mountPoints;
-  }
-
   function findNearestMountPoint(mountPoints, userLat, userLon) {
     let nearest = null;
     let minDistance = Infinity;
@@ -187,4 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
   }
+
+  // Make toggleMountPoints available globally
+  window.toggleMountPoints = toggleMountPoints;
 });
