@@ -91,6 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
         `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
       row.querySelector('.point-distance').textContent = `${distance.toFixed(1)} km`;
       
+      const nameCell = row.querySelector('.point-name');
+      nameCell.addEventListener('click', (e) => {
+        copyToClipboard(point.name, e.target);
+      });
+
       tbody.appendChild(row);
     });
 
@@ -166,6 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
         `${window.userLat.toFixed(2)}°, ${window.userLon.toFixed(2)}°`;
     content.querySelector('.location-method').textContent = window.locationMethod || 'Unknown';
 
+    if (content) {
+      const nameElement = content.querySelector('.mount-point-name');
+      nameElement.addEventListener('click', (e) => {
+        copyToClipboard(mountPoint.name, e.target);
+      });
+    }
+
     mountPointDetails.innerHTML = '';
     mountPointDetails.appendChild(content);
   }
@@ -215,6 +227,25 @@ document.addEventListener('DOMContentLoaded', () => {
       Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return R * c;
+  }
+
+  function copyToClipboard(text, element) {
+    navigator.clipboard.writeText(text).then(() => {
+      const feedback = document.createElement('span');
+      feedback.textContent = 'Copied!';
+      feedback.className = 'copied-feedback';
+      
+      // Position the feedback relative to viewport
+      const rect = element.getBoundingClientRect();
+      feedback.style.position = 'fixed';
+      feedback.style.left = `${rect.left}px`;
+      feedback.style.top = `${rect.bottom + 5}px`;
+      
+      document.body.appendChild(feedback);
+      
+      // Remove the feedback element after animation
+      setTimeout(() => feedback.remove(), 1000);
+    }).catch(err => console.error('Failed to copy:', err));
   }
 
   // Make toggleMountPoints available globally

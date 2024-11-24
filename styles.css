@@ -65,6 +65,18 @@ h1 {
     color: var(--primary-color);
     font-weight: bold;
     margin: 1rem 0;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+}
+
+.mount-point-name:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.mount-point-name:active {
+    transform: scale(0.98);
 }
 
 .location-info {
@@ -159,6 +171,24 @@ h1 {
 
 .mount-points-table tr:hover {
     background-color: var(--background-color);
+}
+
+.copied-feedback {
+    position: fixed;
+    background: var(--primary-color);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    animation: fadeOut 1s ease-in-out forwards;
+    z-index: 1000;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
 }
 
 @media (prefers-color-scheme: dark) {
