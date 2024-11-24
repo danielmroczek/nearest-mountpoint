@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ntrip Nearest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>NTRIP Mount Point Finder</h1>
+        <div class="subtitle">ASG-EUPOS Network</div>
+        <div class="card">
+            <div id="mount-point-info">
+                <h2>Nearest Mount Point:</h2>
+                <p id="mount-point-details">
+                    <span class="loading"></span>
+                    Fetching your location...
+                </p>
+                <button class="retry-button" onclick="retryLocation()" style="display: none;">
+                    Try Again
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <template id="mount-point-template">
+        <div class="mount-point-name"></div>
+        <div class="location-info">
+            <div>Mount point location: <strong class="mount-location"></strong></div>
+            <div>Your location: <strong class="user-location"></strong></div>
+        </div>
+    </template>
+
+    <template id="loading-template">
+        <span class="loading"></span>
+        Fetching your location...
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
