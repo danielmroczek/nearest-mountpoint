@@ -97,6 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const locationCell = row.querySelector('.point-location');
       locationCell.textContent = location;
       locationCell.title = location;
+      locationCell.addEventListener('click', () => {
+        const url = `https://www.openstreetmap.org/?mlat=${point.latitude}&mlon=${point.longitude}#map=15/${point.latitude}/${point.longitude}`;
+        window.open(url, '_blank');
+      });
       
       const placeCell = row.querySelector('.point-place');
       placeCell.textContent = place;
@@ -166,21 +170,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const template = document.getElementById('mount-point-template');
     const content = template.content.cloneNode(true);
+    const mountLocation = content.querySelector('.mount-location');
 
     content.querySelector('.mount-point-name').textContent = mountPoint.name;
-    content.querySelector('.mount-location').textContent = 
+    mountLocation.textContent = 
         `${mountPoint.latitude.toFixed(2)}°, ${mountPoint.longitude.toFixed(2)}°`;
-    content.querySelector('.user-location').textContent = 
+
+    // Add event listener to the mount location element within the content
+    
+    mountLocation.addEventListener('click', () => {
+        const url = `https://www.openstreetmap.org/?mlat=${mountPoint.latitude}&mlon=${mountPoint.longitude}#map=15/${mountPoint.latitude}/${mountPoint.longitude}`;
+        window.open(url, '_blank');
+    });
+
+    const userLocation = content.querySelector('.user-location')
+    userLocation.textContent = 
         `${window.userLat.toFixed(2)}°, ${window.userLon.toFixed(2)}°`;
+
+    userLocation.addEventListener('click', () => {
+        const url = `https://www.openstreetmap.org/?mlat=${window.userLat}&mlon=${window.userLon}#map=15/${window.userLat}/${window.userLon}`;
+        window.open(url, '_blank');
+    });
+
     content.querySelector('.location-method').textContent = window.locationMethod || 'Unknown';
-    // Add place information
     content.querySelector('.mount-place').textContent = mountPoint.place || 'Unknown location';
 
     if (content) {
-      const nameElement = content.querySelector('.mount-point-name');
-      nameElement.addEventListener('click', (e) => {
-        copyToClipboard(mountPoint.name, e.target);
-      });
+        const nameElement = content.querySelector('.mount-point-name');
+        nameElement.addEventListener('click', (e) => {
+            copyToClipboard(mountPoint.name, e.target);
+        });
     }
 
     mountPointDetails.innerHTML = '';
