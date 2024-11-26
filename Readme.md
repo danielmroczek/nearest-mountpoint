@@ -28,12 +28,15 @@ Try it now: [NTRIP Mount Point Finder](https://pan-danio.github.io/ntrip-nearest
 ## 🚀 Getting Started
 
 1. Clone the repository
-2. Open `index.html` in your browser
-3. Allow location access when prompted
+2. *(Optional)* Run the update script: `node util/getMounts.js`
+3. Open `index.html` in your browser
+4. Allow location access when prompted
 
 ## 📝 Note
 
 This tool works with the Polish ASG-EUPOS NTRIP Caster network. Mount point data is stored locally in JSON format.
+
+The script can be easily modified to work with different Caster networks.
 
 ## 📄 License
 

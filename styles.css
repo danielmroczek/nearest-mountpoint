@@ -171,17 +171,17 @@ h1 {
 
 .mount-points-table th:nth-child(1),
 .mount-points-table td:nth-child(1) {
-    width: 30%; /* Mount point name */
+    width: 28%; /* Mount point name */
 }
 
 .mount-points-table th:nth-child(2),
 .mount-points-table td:nth-child(2) {
-    width: 25%; /* Location */
+    width: 22%; /* Location */
 }
 
 .mount-points-table th:nth-child(3),
 .mount-points-table td:nth-child(3) {
-    width: 30%; /* Place */
+    width: 35%; /* Place */
 }
 
 .mount-points-table th:nth-child(4),
@@ -320,12 +320,12 @@ h1 {
 
     .mount-points-table th:nth-child(2),
     .mount-points-table td:nth-child(2) {
-        width: 25%; /* Location */
+        width: 15%; /* Location */
     }
 
     .mount-points-table th:nth-child(3),
     .mount-points-table td:nth-child(3) {
-        width: 35%; /* Place */
+        width: 45%; /* Place */
     }
 
     .mount-points-table th:nth-child(4),
