@@ -15,7 +15,7 @@ function convertSourceTableToJson(sourceTable) {
     if (line.startsWith('STR;')) {
       const fields = line.split(';');
       result.streams.push({
-        mountPoint: fields[1],
+        name: fields[1],      
         identifier: fields[2],
         format: fields[3],
         formatDetails: fields[4],
@@ -84,20 +84,28 @@ function fetchUrl(url, headers = {}) {
 
 async function getPlace(latitude, longitude) {
   // Add delay to respect Nominatim usage policy
-  await new Promise(resolve => setTimeout(resolve, 1000));
+  // await new Promise(resolve => setTimeout(resolve, 1000));
   
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   console.log(`Url: ${url}`); 
   const response = await fetchUrl(url, { 'User-Agent': 'NtripCaster/1.0' });
   const data = JSON.parse(response);
   
-  // Try to find the place in order of preference: city, town, village
-  const place = data.address?.city || data.address?.town || data.address?.village || null;
+  // Try to find the place in order of preference
+  let place = null;
   
-  // If it's a city, check for additional details
   if (data.address?.city) {
+    place = data.address.city;
+    // If it's a city, check for additional details
     const detail = data.address?.neighbourhood || data.address?.suburb || data.address?.quarter;
     return detail ? `${place} (${detail})` : place;
+  } else if (data.address?.town) {
+    return data.address.town;
+  } else if (data.address?.village) {
+    place = data.address.village;
+    // For villages, add municipality (gmina) if available
+    const municipality = data.address?.municipality;
+    return municipality ? `${place} (${municipality})` : place;
   }
   
   return place;
@@ -107,9 +115,9 @@ async function addPlacesToStreams(streams) {
   for (const stream of streams) {
     try {
       stream.place = await getPlace(stream.latitude, stream.longitude);
-      console.log(`Place for ${stream.mountPoint}: ${stream.place}`);
+      console.log(`Place for ${stream.name}: ${stream.place}`); 
     } catch (error) {
-      console.error(`Error fetching place for ${stream.mountPoint}:`, error);
+      console.error(`Error fetching place for ${stream.name}:`, error);
       stream.place = null;
     }
   }

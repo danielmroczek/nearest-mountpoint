@@ -1,7 +1,7 @@
 {
   "streams": [
     {
-      "mountPoint": "BART_RTCM_3_2",
+      "name": "BART_RTCM_3_2",
       "identifier": "BART_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -22,7 +22,7 @@
       "place": "Bartoszyce"
     },
     {
-      "mountPoint": "BIAL_RTCM_3_2",
+      "name": "BIAL_RTCM_3_2",
       "identifier": "BIAL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -43,7 +43,7 @@
       "place": "Białystok (Osiedle Kopernika)"
     },
     {
-      "mountPoint": "BILG_RTCM_3_2",
+      "name": "BILG_RTCM_3_2",
       "identifier": "BILG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -64,7 +64,7 @@
       "place": "Biłgoraj"
     },
     {
-      "mountPoint": "BOGI_RTCM_3_2",
+      "name": "BOGI_RTCM_3_2",
       "identifier": "BOGI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -82,10 +82,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Zegrze"
+      "place": "Zegrze (gmina Serock)"
     },
     {
-      "mountPoint": "BOR1_RTCM_3_2",
+      "name": "BOR1_RTCM_3_2",
       "identifier": "BOR1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -103,10 +103,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Borówiec"
+      "place": "Borówiec (gmina Kórnik)"
     },
     {
-      "mountPoint": "BPDL_RTCM_3_2",
+      "name": "BPDL_RTCM_3_2",
       "identifier": "BPDL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -127,7 +127,7 @@
       "place": "Biała Podlaska (Błonie)"
     },
     {
-      "mountPoint": "BRSK_RTCM_3_2",
+      "name": "BRSK_RTCM_3_2",
       "identifier": "BRSK_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -145,10 +145,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Popławy"
+      "place": "Popławy (gmina Brańsk)"
     },
     {
-      "mountPoint": "BUZD_RTCM_3_2",
+      "name": "BUZD_RTCM_3_2",
       "identifier": "BUZD_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -169,7 +169,7 @@
       "place": "Busko-Zdrój"
     },
     {
-      "mountPoint": "BYDG_RTCM_3_2",
+      "name": "BYDG_RTCM_3_2",
       "identifier": "BYDG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -190,7 +190,7 @@
       "place": "Bydgoszcz (Bielany)"
     },
     {
-      "mountPoint": "CBKA_RTCM_3_2",
+      "name": "CBKA_RTCM_3_2",
       "identifier": "CBKA_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -211,7 +211,7 @@
       "place": "Warszawa (Mokotów)"
     },
     {
-      "mountPoint": "CCHN_RTCM_3_2",
+      "name": "CCHN_RTCM_3_2",
       "identifier": "CCHN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -232,7 +232,7 @@
       "place": "Ciechanów"
     },
     {
-      "mountPoint": "CHEL_RTCM_3_2",
+      "name": "CHEL_RTCM_3_2",
       "identifier": "CHEL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -253,7 +253,7 @@
       "place": "Chełm (Osiedle Koniczynka)"
     },
     {
-      "mountPoint": "CHNO_RTCM_3_2",
+      "name": "CHNO_RTCM_3_2",
       "identifier": "CHNO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -274,7 +274,7 @@
       "place": "Choszczno"
     },
     {
-      "mountPoint": "CHOJ_RTCM_3_2",
+      "name": "CHOJ_RTCM_3_2",
       "identifier": "CHOJ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -295,7 +295,7 @@
       "place": "Chojnice"
     },
     {
-      "mountPoint": "DRWP_RTCM_3_2",
+      "name": "DRWP_RTCM_3_2",
       "identifier": "DRWP_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -316,7 +316,7 @@
       "place": "Drawsko Pomorskie"
     },
     {
-      "mountPoint": "DZIA_RTCM_3_2",
+      "name": "DZIA_RTCM_3_2",
       "identifier": "DZIA_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -337,7 +337,7 @@
       "place": "Działdowo"
     },
     {
-      "mountPoint": "ELBL_RTCM_3_2",
+      "name": "ELBL_RTCM_3_2",
       "identifier": "ELBL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -358,7 +358,7 @@
       "place": "Elbląg (Nowe Miasto)"
     },
     {
-      "mountPoint": "GDA1_RTCM_3_2",
+      "name": "GDA1_RTCM_3_2",
       "identifier": "GDA1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -379,7 +379,7 @@
       "place": "Gdańsk (Piaskownia)"
     },
     {
-      "mountPoint": "GIZY_RTCM_3_2",
+      "name": "GIZY_RTCM_3_2",
       "identifier": "GIZY_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -400,7 +400,7 @@
       "place": "Giżycko"
     },
     {
-      "mountPoint": "GLOG_RTCM_3_2",
+      "name": "GLOG_RTCM_3_2",
       "identifier": "GLOG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -421,7 +421,7 @@
       "place": "Głogów"
     },
     {
-      "mountPoint": "GNIE_RTCM_3_2",
+      "name": "GNIE_RTCM_3_2",
       "identifier": "GNIE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -442,7 +442,7 @@
       "place": "Gniezno"
     },
     {
-      "mountPoint": "GOLE_RTCM_3_2",
+      "name": "GOLE_RTCM_3_2",
       "identifier": "GOLE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -463,7 +463,7 @@
       "place": "Goleniów"
     },
     {
-      "mountPoint": "GRAJ_RTCM_3_2",
+      "name": "GRAJ_RTCM_3_2",
       "identifier": "GRAJ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -481,10 +481,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Czachy"
+      "place": "Czachy (gmina Radziłów)"
     },
     {
-      "mountPoint": "GRUD_RTCM_3_2",
+      "name": "GRUD_RTCM_3_2",
       "identifier": "GRUD_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -505,7 +505,7 @@
       "place": "Grudziądz"
     },
     {
-      "mountPoint": "GWWL_RTCM_3_2",
+      "name": "GWWL_RTCM_3_2",
       "identifier": "GWWL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -526,7 +526,7 @@
       "place": "Gorzów Wielkopolski (Osiedle Staszica)"
     },
     {
-      "mountPoint": "HAJN_RTCM_3_2",
+      "name": "HAJN_RTCM_3_2",
       "identifier": "HAJN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -547,7 +547,7 @@
       "place": "Hajnówka"
     },
     {
-      "mountPoint": "HOZD_RTCM_3_2",
+      "name": "HOZD_RTCM_3_2",
       "identifier": "HOZD_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -565,10 +565,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Horyniec-Zdrój"
+      "place": "Horyniec-Zdrój (gmina Horyniec-Zdrój)"
     },
     {
-      "mountPoint": "HRUB_RTCM_3_2",
+      "name": "HRUB_RTCM_3_2",
       "identifier": "HRUB_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -589,7 +589,7 @@
       "place": "Hrubieszów"
     },
     {
-      "mountPoint": "ILAW_RTCM_3_2",
+      "name": "ILAW_RTCM_3_2",
       "identifier": "ILAW_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -607,10 +607,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Kurzętnik"
+      "place": "Kurzętnik (gmina Kurzętnik)"
     },
     {
-      "mountPoint": "JLGR_RTCM_3_2",
+      "name": "JLGR_RTCM_3_2",
       "identifier": "JLGR_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -631,7 +631,7 @@
       "place": "Jelenia Góra"
     },
     {
-      "mountPoint": "JOZ2_RTCM_3_2",
+      "name": "JOZ2_RTCM_3_2",
       "identifier": "JOZ2_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -649,10 +649,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Józefosław"
+      "place": "Józefosław (gmina Piaseczno)"
     },
     {
-      "mountPoint": "KALI_RTCM_3_2",
+      "name": "KALI_RTCM_3_2",
       "identifier": "KALI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -673,7 +673,7 @@
       "place": "Kalisz (Stare Miasto)"
     },
     {
-      "mountPoint": "KAM1_RTCM_3_2",
+      "name": "KAM1_RTCM_3_2",
       "identifier": "KAM1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -694,7 +694,7 @@
       "place": "Kamień Pomorski"
     },
     {
-      "mountPoint": "KATO_RTCM_3_2",
+      "name": "KATO_RTCM_3_2",
       "identifier": "KATO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -715,7 +715,7 @@
       "place": "Katowice (Osiedle Paderewskiego-Muchowiec)"
     },
     {
-      "mountPoint": "KEPN_RTCM_3_2",
+      "name": "KEPN_RTCM_3_2",
       "identifier": "KEPN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -736,7 +736,7 @@
       "place": "Kępno"
     },
     {
-      "mountPoint": "KLCE_RTCM_3_2",
+      "name": "KLCE_RTCM_3_2",
       "identifier": "KLCE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -757,7 +757,7 @@
       "place": "Kielce (Osiedle Okrzei)"
     },
     {
-      "mountPoint": "KLOB_RTCM_3_2",
+      "name": "KLOB_RTCM_3_2",
       "identifier": "KLOB_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -778,7 +778,7 @@
       "place": "Kłobuck"
     },
     {
-      "mountPoint": "KONI_RTCM_3_2",
+      "name": "KONI_RTCM_3_2",
       "identifier": "KONI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -799,7 +799,7 @@
       "place": "Konin (Górka)"
     },
     {
-      "mountPoint": "KOSC_RTCM_3_2",
+      "name": "KOSC_RTCM_3_2",
       "identifier": "KOSC_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -820,7 +820,7 @@
       "place": "Kościerzyna"
     },
     {
-      "mountPoint": "KOSZ_RTCM_3_2",
+      "name": "KOSZ_RTCM_3_2",
       "identifier": "KOSZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -841,7 +841,7 @@
       "place": "Koszalin (Osiedle imienia Melchiora Wańkowicza)"
     },
     {
-      "mountPoint": "KRA1_RTCM_3_2",
+      "name": "KRA1_RTCM_3_2",
       "identifier": "KRA1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -862,7 +862,7 @@
       "place": "Kraków (Krowodrza)"
     },
     {
-      "mountPoint": "KROS_RTCM_3_2",
+      "name": "KROS_RTCM_3_2",
       "identifier": "KROS_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -883,7 +883,7 @@
       "place": "Krosno (Osiedle Grota - Roweckiego)"
     },
     {
-      "mountPoint": "KROT_RTCM_3_2",
+      "name": "KROT_RTCM_3_2",
       "identifier": "KROT_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -904,7 +904,7 @@
       "place": "Krotoszyn"
     },
     {
-      "mountPoint": "KUTN_RTCM_3_2",
+      "name": "KUTN_RTCM_3_2",
       "identifier": "KUTN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -925,7 +925,7 @@
       "place": "Kutno"
     },
     {
-      "mountPoint": "LAMA_RTCM_3_2",
+      "name": "LAMA_RTCM_3_2",
       "identifier": "LAMA_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -943,10 +943,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Lamkówko"
+      "place": "Lamkówko (gmina Barczewo)"
     },
     {
-      "mountPoint": "LEGN_RTCM_3_2",
+      "name": "LEGN_RTCM_3_2",
       "identifier": "LEGN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -967,7 +967,7 @@
       "place": "Legnica (Tarninów)"
     },
     {
-      "mountPoint": "LELO_RTCM_3_2",
+      "name": "LELO_RTCM_3_2",
       "identifier": "LELO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -985,10 +985,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Lelów"
+      "place": "Lelów (gmina Lelów)"
     },
     {
-      "mountPoint": "LESZ_RTCM_3_2",
+      "name": "LESZ_RTCM_3_2",
       "identifier": "LESZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1009,7 +1009,7 @@
       "place": "Leszno (Osiedle Włodarczaka)"
     },
     {
-      "mountPoint": "LODZ_RTCM_3_2",
+      "name": "LODZ_RTCM_3_2",
       "identifier": "LODZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1030,7 +1030,7 @@
       "place": "Łódź (Łódź-Bałuty)"
     },
     {
-      "mountPoint": "LOMZ_RTCM_3_2",
+      "name": "LOMZ_RTCM_3_2",
       "identifier": "LOMZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1051,7 +1051,7 @@
       "place": "Łomża (Osiedle Mazowsze)"
     },
     {
-      "mountPoint": "LUBL_RTCM_3_2",
+      "name": "LUBL_RTCM_3_2",
       "identifier": "LUBL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1072,7 +1072,7 @@
       "place": "Lublin (Wieniawa)"
     },
     {
-      "mountPoint": "MIEL_RTCM_3_2",
+      "name": "MIEL_RTCM_3_2",
       "identifier": "MIEL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1093,7 +1093,7 @@
       "place": "Mielec"
     },
     {
-      "mountPoint": "MIES_RTCM_3_2",
+      "name": "MIES_RTCM_3_2",
       "identifier": "MIES_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1114,7 +1114,7 @@
       "place": "Mieszkowice"
     },
     {
-      "mountPoint": "MIMA_RTCM_3_2",
+      "name": "MIMA_RTCM_3_2",
       "identifier": "MIMA_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1135,7 +1135,7 @@
       "place": "Mińsk Mazowiecki"
     },
     {
-      "mountPoint": "MLCN_RTCM_3_2",
+      "name": "MLCN_RTCM_3_2",
       "identifier": "MLCN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1156,7 +1156,7 @@
       "place": "Rzeszów (Miłocin)"
     },
     {
-      "mountPoint": "MYSZ_RTCM_3_2",
+      "name": "MYSZ_RTCM_3_2",
       "identifier": "MYSZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1177,7 +1177,7 @@
       "place": "Myszyniec"
     },
     {
-      "mountPoint": "NODW_RTCM_3_2",
+      "name": "NODW_RTCM_3_2",
       "identifier": "NODW_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1198,7 +1198,7 @@
       "place": "Nowy Dwór Mazowiecki"
     },
     {
-      "mountPoint": "NTML_RTCM_3_2",
+      "name": "NTML_RTCM_3_2",
       "identifier": "NTML_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1219,7 +1219,7 @@
       "place": "Nowy Tomyśl"
     },
     {
-      "mountPoint": "NWSC_RTCM_3_2",
+      "name": "NWSC_RTCM_3_2",
       "identifier": "NWSC_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1240,7 +1240,7 @@
       "place": "Nowy Sącz (Wólki)"
     },
     {
-      "mountPoint": "NWT1_RTCM_3_2",
+      "name": "NWT1_RTCM_3_2",
       "identifier": "NWT1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1261,7 +1261,7 @@
       "place": "Nowy Targ"
     },
     {
-      "mountPoint": "NYSA_RTCM_3_2",
+      "name": "NYSA_RTCM_3_2",
       "identifier": "NYSA_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1282,7 +1282,7 @@
       "place": "Nysa"
     },
     {
-      "mountPoint": "OPLE_RTCM_3_2",
+      "name": "OPLE_RTCM_3_2",
       "identifier": "OPLE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1303,7 +1303,7 @@
       "place": "Opole (Wyspa Pasieka)"
     },
     {
-      "mountPoint": "OPLU_RTCM_3_2",
+      "name": "OPLU_RTCM_3_2",
       "identifier": "OPLU_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1324,7 +1324,7 @@
       "place": "Opole Lubelskie"
     },
     {
-      "mountPoint": "OPNT_RTCM_3_2",
+      "name": "OPNT_RTCM_3_2",
       "identifier": "OPNT_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1345,7 +1345,7 @@
       "place": "Olsztyn (Piękna Góra)"
     },
     {
-      "mountPoint": "OSMZ_RTCM_3_2",
+      "name": "OSMZ_RTCM_3_2",
       "identifier": "OSMZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1366,7 +1366,7 @@
       "place": "Ostrów Mazowiecka"
     },
     {
-      "mountPoint": "PITR_RTCM_3_2",
+      "name": "PITR_RTCM_3_2",
       "identifier": "PITR_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1387,7 +1387,7 @@
       "place": "Piotrków Trybunalski (Osiedle Krakowskie Przedmieście)"
     },
     {
-      "mountPoint": "POZN_RTCM_3_2",
+      "name": "POZN_RTCM_3_2",
       "identifier": "POZN_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1408,7 +1408,7 @@
       "place": "Poznań (Osiedle Na Murawie)"
     },
     {
-      "mountPoint": "PPIL_RTCM_3_2",
+      "name": "PPIL_RTCM_3_2",
       "identifier": "PPIL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1429,7 +1429,7 @@
       "place": "Piła"
     },
     {
-      "mountPoint": "PROS_RTCM_3_2",
+      "name": "PROS_RTCM_3_2",
       "identifier": "PROS_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1450,7 +1450,7 @@
       "place": "Proszowice"
     },
     {
-      "mountPoint": "PRZM_RTCM_3_2",
+      "name": "PRZM_RTCM_3_2",
       "identifier": "PRZM_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1471,7 +1471,7 @@
       "place": "Przemyśl (Rycerskie)"
     },
     {
-      "mountPoint": "RADM_RTCM_3_2",
+      "name": "RADM_RTCM_3_2",
       "identifier": "RADM_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1492,7 +1492,7 @@
       "place": "Radom (Glinice)"
     },
     {
-      "mountPoint": "REDZ_RTCM_3_2",
+      "name": "REDZ_RTCM_3_2",
       "identifier": "REDZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1510,10 +1510,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Redzikowo"
+      "place": "Redzikowo (gmina Redzikowo)"
     },
     {
-      "mountPoint": "RWM1_RTCM_3_2",
+      "name": "RWM1_RTCM_3_2",
       "identifier": "RWM1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1534,7 +1534,7 @@
       "place": "Rawa Mazowiecka"
     },
     {
-      "mountPoint": "RYKI_RTCM_3_2",
+      "name": "RYKI_RTCM_3_2",
       "identifier": "RYKI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1555,7 +1555,7 @@
       "place": "Ryki"
     },
     {
-      "mountPoint": "SIDZ_RTCM_3_2",
+      "name": "SIDZ_RTCM_3_2",
       "identifier": "SIDZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1576,7 +1576,7 @@
       "place": "Sieradz"
     },
     {
-      "mountPoint": "SIED_RTCM_3_2",
+      "name": "SIED_RTCM_3_2",
       "identifier": "SIED_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1597,7 +1597,7 @@
       "place": "Siedlce (Osiedle Wyszyńskiego)"
     },
     {
-      "mountPoint": "SIPC_RTCM_3_2",
+      "name": "SIPC_RTCM_3_2",
       "identifier": "SIPC_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1618,7 +1618,7 @@
       "place": "Sierpc"
     },
     {
-      "mountPoint": "SOCH_RTCM_3_2",
+      "name": "SOCH_RTCM_3_2",
       "identifier": "SOCH_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1639,7 +1639,7 @@
       "place": "Sierpc"
     },
     {
-      "mountPoint": "SOKL_RTCM_3_2",
+      "name": "SOKL_RTCM_3_2",
       "identifier": "SOKL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1660,7 +1660,7 @@
       "place": "Sokółka"
     },
     {
-      "mountPoint": "STRG_RTCM_3_2",
+      "name": "STRG_RTCM_3_2",
       "identifier": "STRG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1681,7 +1681,7 @@
       "place": "Starogard Gdański"
     },
     {
-      "mountPoint": "SWIB_RTCM_3_2",
+      "name": "SWIB_RTCM_3_2",
       "identifier": "SWIB_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1702,7 +1702,7 @@
       "place": "Świebodzin"
     },
     {
-      "mountPoint": "SWKI_RTCM_3_2",
+      "name": "SWKI_RTCM_3_2",
       "identifier": "SWKI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1723,7 +1723,7 @@
       "place": "Suwałki (Osiedle II)"
     },
     {
-      "mountPoint": "SZE2_RTCM_3_2",
+      "name": "SZE2_RTCM_3_2",
       "identifier": "SZE2_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1744,7 +1744,7 @@
       "place": "Szczecinek"
     },
     {
-      "mountPoint": "TABG_RTCM_3_2",
+      "name": "TABG_RTCM_3_2",
       "identifier": "TABG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1765,7 +1765,7 @@
       "place": "Tarnobrzeg (Przywiśle)"
     },
     {
-      "mountPoint": "TAR1_RTCM_3_2",
+      "name": "TAR1_RTCM_3_2",
       "identifier": "TAR1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1786,7 +1786,7 @@
       "place": "Tarnowskie Góry"
     },
     {
-      "mountPoint": "TORU_RTCM_3_2",
+      "name": "TORU_RTCM_3_2",
       "identifier": "TORU_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1807,7 +1807,7 @@
       "place": "Toruń (Jakubskie Przedmieście)"
     },
     {
-      "mountPoint": "TRNW_RTCM_3_2",
+      "name": "TRNW_RTCM_3_2",
       "identifier": "TRNW_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1828,7 +1828,7 @@
       "place": "Tarnów (Osiedle Parkowa)"
     },
     {
-      "mountPoint": "USDL_RTCM_3_2",
+      "name": "USDL_RTCM_3_2",
       "identifier": "USDL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1849,7 +1849,7 @@
       "place": "Ustrzyki Dolne"
     },
     {
-      "mountPoint": "WAT1_RTCM_3_2",
+      "name": "WAT1_RTCM_3_2",
       "identifier": "WAT1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1867,10 +1867,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Warszawa (Bemowo)"
+      "place": "Warszawa (Bemowo I)"
     },
     {
-      "mountPoint": "WIEL_RTCM_3_2",
+      "name": "WIEL_RTCM_3_2",
       "identifier": "WIEL_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1891,7 +1891,7 @@
       "place": "Wieluń"
     },
     {
-      "mountPoint": "WLAD_RTCM_3_2",
+      "name": "WLAD_RTCM_3_2",
       "identifier": "WLAD_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1912,7 +1912,7 @@
       "place": "Władysławowo"
     },
     {
-      "mountPoint": "WLBR_RTCM_3_2",
+      "name": "WLBR_RTCM_3_2",
       "identifier": "WLBR_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1933,7 +1933,7 @@
       "place": "Wałbrzych (Śródmieście)"
     },
     {
-      "mountPoint": "WLDW_RTCM_3_2",
+      "name": "WLDW_RTCM_3_2",
       "identifier": "WLDW_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1954,7 +1954,7 @@
       "place": "Włodawa"
     },
     {
-      "mountPoint": "WLOC_RTCM_3_2",
+      "name": "WLOC_RTCM_3_2",
       "identifier": "WLOC_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1975,7 +1975,7 @@
       "place": "Włocławek (Stare Miasto)"
     },
     {
-      "mountPoint": "WOD1_RTCM_3_2",
+      "name": "WOD1_RTCM_3_2",
       "identifier": "WOD1_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -1996,7 +1996,7 @@
       "place": "Wodzisław Śląski"
     },
     {
-      "mountPoint": "WRKI_RTCM_3_2",
+      "name": "WRKI_RTCM_3_2",
       "identifier": "WRKI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2017,7 +2017,7 @@
       "place": "Wronki"
     },
     {
-      "mountPoint": "WROC_RTCM_3_2",
+      "name": "WROC_RTCM_3_2",
       "identifier": "WROC_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2038,7 +2038,7 @@
       "place": "Wrocław (Manhattan)"
     },
     {
-      "mountPoint": "ZARY_RTCM_3_2",
+      "name": "ZARY_RTCM_3_2",
       "identifier": "ZARY_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2059,7 +2059,7 @@
       "place": "Żary"
     },
     {
-      "mountPoint": "ZIGR_RTCM_3_2",
+      "name": "ZIGR_RTCM_3_2",
       "identifier": "ZIGR_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2080,7 +2080,7 @@
       "place": "Zielona Góra (Osiedle Tysiąclecia)"
     },
     {
-      "mountPoint": "ZYWI_RTCM_3_2",
+      "name": "ZYWI_RTCM_3_2",
       "identifier": "ZYWI_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2101,7 +2101,7 @@
       "place": "Żywiec"
     },
     {
-      "mountPoint": "KLDZ_RTCM_3_2",
+      "name": "KLDZ_RTCM_3_2",
       "identifier": "KLDZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2122,7 +2122,7 @@
       "place": "Kłodzko"
     },
     {
-      "mountPoint": "RTK4G_MULTI_RTCM32",
+      "name": "RTK4G_MULTI_RTCM32",
       "identifier": "RTK4G_MULTI_RTCM32",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2140,10 +2140,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Kwilno"
+      "place": "Kwilno (gmina Zgierz)"
     },
     {
-      "mountPoint": "BRWO_RTCM_3_2",
+      "name": "BRWO_RTCM_3_2",
       "identifier": "BRWO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2164,7 +2164,7 @@
       "place": "Braniewo"
     },
     {
-      "mountPoint": "KLBG_RTCM_3_2",
+      "name": "KLBG_RTCM_3_2",
       "identifier": "KLBG_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2185,7 +2185,7 @@
       "place": "Kamień Pomorski"
     },
     {
-      "mountPoint": "OLES_RTCM_3_2",
+      "name": "OLES_RTCM_3_2",
       "identifier": "OLES_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2203,10 +2203,10 @@
       "hasFeesApplied": false,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Kórnica"
+      "place": "Kórnica (gmina Krapkowice)"
     },
     {
-      "mountPoint": "KSKE_RTCM_3_2",
+      "name": "KSKE_RTCM_3_2",
       "identifier": "KSKE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2227,7 +2227,7 @@
       "place": "Krotoszyn"
     },
     {
-      "mountPoint": "GLDP_RTCM_3_2",
+      "name": "GLDP_RTCM_3_2",
       "identifier": "GLDP_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2248,7 +2248,7 @@
       "place": "Gołdap"
     },
     {
-      "mountPoint": "BOLE_RTCM_3_2",
+      "name": "BOLE_RTCM_3_2",
       "identifier": "BOLE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2269,7 +2269,7 @@
       "place": "Bolesławiec"
     },
     {
-      "mountPoint": "INWR_RTCM_3_2",
+      "name": "INWR_RTCM_3_2",
       "identifier": "INWR_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2290,7 +2290,7 @@
       "place": "Inowrocław"
     },
     {
-      "mountPoint": "OSEK_RTCM_3_2",
+      "name": "OSEK_RTCM_3_2",
       "identifier": "OSEK_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2308,10 +2308,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Osiek"
+      "place": "Osiek (gmina Osiek)"
     },
     {
-      "mountPoint": "OSWM_RTCM_3_2",
+      "name": "OSWM_RTCM_3_2",
       "identifier": "OSWM_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2332,7 +2332,7 @@
       "place": "Oświęcim"
     },
     {
-      "mountPoint": "PISZ_RTCM_3_2",
+      "name": "PISZ_RTCM_3_2",
       "identifier": "PISZ_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2353,7 +2353,7 @@
       "place": "Pisz"
     },
     {
-      "mountPoint": "SLUP_RTCM_3_2",
+      "name": "SLUP_RTCM_3_2",
       "identifier": "SLUP_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2371,10 +2371,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Słupno"
+      "place": "Słupno (gmina Słupno)"
     },
     {
-      "mountPoint": "STCE_RTCM_3_2",
+      "name": "STCE_RTCM_3_2",
       "identifier": "STCE_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2395,7 +2395,7 @@
       "place": "Siemiatycze"
     },
     {
-      "mountPoint": "TRSP_RTCM_3_2",
+      "name": "TRSP_RTCM_3_2",
       "identifier": "TRSP_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2413,10 +2413,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Małaszewicze Małe"
+      "place": "Małaszewicze Małe (gmina Terespol)"
     },
     {
-      "mountPoint": "WIKO_RTCM_3_2",
+      "name": "WIKO_RTCM_3_2",
       "identifier": "WIKO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
@@ -2434,10 +2434,10 @@
       "hasFeesApplied": true,
       "bitrate": 9600,
       "miscInfo": "ASG-EUPOS",
-      "place": "Wicko"
+      "place": "Wicko (gmina Wicko)"
     },
     {
-      "mountPoint": "ZAMO_RTCM_3_2",
+      "name": "ZAMO_RTCM_3_2",
       "identifier": "ZAMO_RTCM_3_2",
       "format": "RTCM 3.2",
       "formatDetails": "1004(1),1005/1007(5),1014(1, 1 msgs),1015(1, all msgs),1016(1, all msgs)",
