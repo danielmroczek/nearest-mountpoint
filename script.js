@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Add content and tooltips
       const nameCell = row.querySelector('.point-name');
-      nameCell.textContent = point.identifier;
-      nameCell.title = point.identifier;
+      nameCell.textContent = point.name;
+      nameCell.title = point.name;
       
       const locationCell = row.querySelector('.point-location');
       locationCell.textContent = location;
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
       row.querySelector('.point-distance').textContent = `${distance.toFixed(1)} km`;
       
       nameCell.addEventListener('click', (e) => {
-          copyToClipboard(point.identifier, e.target);
+          copyToClipboard(point.name, e.target);
       });
 
       tbody.appendChild(row);
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const template = document.getElementById('mount-point-template');
     const content = template.content.cloneNode(true);
 
-    content.querySelector('.mount-point-name').textContent = mountPoint.identifier;
+    content.querySelector('.mount-point-name').textContent = mountPoint.name;
     content.querySelector('.mount-location').textContent = 
         `${mountPoint.latitude.toFixed(2)}°, ${mountPoint.longitude.toFixed(2)}°`;
     content.querySelector('.user-location').textContent = 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (content) {
       const nameElement = content.querySelector('.mount-point-name');
       nameElement.addEventListener('click', (e) => {
-        copyToClipboard(mountPoint.identifier, e.target);
+        copyToClipboard(mountPoint.name, e.target);
       });
     }
 
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mountPoints.forEach(point => {
       const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
-      console.log(`Distance to ${point.identifier}: ${distance} km`);
+      console.log(`Distance to ${point.name}: ${distance} km`);
       if (distance < minDistance) {
         minDistance = distance;
         nearest = point;
