@@ -92,7 +92,15 @@ async function getPlace(latitude, longitude) {
   const data = JSON.parse(response);
   
   // Try to find the place in order of preference: city, town, village
-  return data.address?.city || data.address?.town || data.address?.village || null;
+  const place = data.address?.city || data.address?.town || data.address?.village || null;
+  
+  // If it's a city, check for additional details
+  if (data.address?.city) {
+    const detail = data.address?.neighbourhood || data.address?.suburb || data.address?.quarter;
+    return detail ? `${place} (${detail})` : place;
+  }
+  
+  return place;
 }
 
 async function addPlacesToStreams(streams) {
