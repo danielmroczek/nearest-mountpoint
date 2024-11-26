@@ -84,7 +84,7 @@ function fetchUrl(url, headers = {}) {
 
 async function getPlace(latitude, longitude) {
   // Add delay to respect Nominatim usage policy
-  // await new Promise(resolve => setTimeout(resolve, 1000));
+  await new Promise(resolve => setTimeout(resolve, 1000));
   
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   console.log(`Url: ${url}`); 

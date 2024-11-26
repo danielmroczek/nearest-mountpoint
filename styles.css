@@ -151,6 +151,7 @@ h1 {
     border-collapse: collapse;
     margin-top: 1rem;
     display: none;
+    table-layout: fixed; /* Add this to control column widths */
 }
 
 .mount-points-table.visible {
@@ -163,11 +164,39 @@ h1 {
     text-align: left;
     border-bottom: 1px solid var(--border-color);
     vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.mount-points-table th {
-    font-weight: 500;
-    color: var(--primary-color);
+.mount-points-table th:nth-child(1),
+.mount-points-table td:nth-child(1) {
+    width: 30%; /* Mount point name */
+}
+
+.mount-points-table th:nth-child(2),
+.mount-points-table td:nth-child(2) {
+    width: 25%; /* Location */
+}
+
+.mount-points-table th:nth-child(3),
+.mount-points-table td:nth-child(3) {
+    width: 30%; /* Place */
+}
+
+.mount-points-table th:nth-child(4),
+.mount-points-table td:nth-child(4) {
+    width: 15%; /* Distance */
+    text-align: right;
+}
+
+/* Add tooltips for truncated content */
+.mount-points-table td {
+    position: relative;
+}
+
+.mount-points-table td[title] {
+    cursor: help;
 }
 
 .mount-points-table tr:hover {
@@ -213,6 +242,43 @@ h1 {
     /* color: var(--primary-color); */
 }
 
+.point-name {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.point-location,
+.point-place {
+    color: var(--text-color);
+}
+
+.point-distance {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .mount-points-table th:nth-child(2),
+    .mount-points-table td:nth-child(2) {
+        display: none; /* Hide location on small screens */
+    }
+
+    .mount-points-table th:nth-child(1),
+    .mount-points-table td:nth-child(1) {
+        width: 50%; /* Increase name width */
+    }
+
+    .mount-points-table th:nth-child(3),
+    .mount-points-table td:nth-child(3) {
+        display: none; /* Hide place on small screens */
+    }
+
+    .mount-points-table th:nth-child(4),
+    .mount-points-table td:nth-child(4) {
+        width: 50%; /* Slightly increase distance width */
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --text-color: #e0e0e0;
@@ -237,5 +303,33 @@ h1 {
 
     .mount-points-table tr:hover {
         background-color: #333333;
+    }
+}
+
+/* Add this new media query after your existing ones */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 900px;
+    }
+
+    /* Adjust table column widths for better proportions on wider screens */
+    .mount-points-table th:nth-child(1),
+    .mount-points-table td:nth-child(1) {
+        width: 25%; /* Mount point name */
+    }
+
+    .mount-points-table th:nth-child(2),
+    .mount-points-table td:nth-child(2) {
+        width: 25%; /* Location */
+    }
+
+    .mount-points-table th:nth-child(3),
+    .mount-points-table td:nth-child(3) {
+        width: 35%; /* Place */
+    }
+
+    .mount-points-table th:nth-child(4),
+    .mount-points-table td:nth-child(4) {
+        width: 15%; /* Distance */
     }
 }

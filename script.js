@@ -86,15 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
       const row = rowTemplate.content.cloneNode(true);
       
-      row.querySelector('.point-name').textContent = point.identifier;
-      row.querySelector('.point-location').textContent = 
-        `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
-      row.querySelector('.point-place').textContent = point.place || 'Unknown';
+      const location = `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
+      const place = point.place || 'Unknown';
+      
+      // Add content and tooltips
+      const nameCell = row.querySelector('.point-name');
+      nameCell.textContent = point.identifier;
+      nameCell.title = point.identifier;
+      
+      const locationCell = row.querySelector('.point-location');
+      locationCell.textContent = location;
+      locationCell.title = location;
+      
+      const placeCell = row.querySelector('.point-place');
+      placeCell.textContent = place;
+      placeCell.title = place;
+      
       row.querySelector('.point-distance').textContent = `${distance.toFixed(1)} km`;
       
-      const nameCell = row.querySelector('.point-name');
       nameCell.addEventListener('click', (e) => {
-        copyToClipboard(point.name, e.target);
+          copyToClipboard(point.identifier, e.target);
       });
 
       tbody.appendChild(row);
