@@ -162,6 +162,7 @@ h1 {
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
 }
 
 .mount-points-table th {
@@ -189,6 +190,27 @@ h1 {
     0% { opacity: 1; }
     70% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+.mount-place {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.point-location {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.point-place {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Remove or comment out the color property to use default text color */
+    /* color: var(--primary-color); */
 }
 
 @media (prefers-color-scheme: dark) {

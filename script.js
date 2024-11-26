@@ -86,9 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
       const row = rowTemplate.content.cloneNode(true);
       
-      row.querySelector('.point-name').textContent = point.name;
+      row.querySelector('.point-name').textContent = point.identifier;
       row.querySelector('.point-location').textContent = 
         `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
+      row.querySelector('.point-place').textContent = point.place || 'Unknown';
       row.querySelector('.point-distance').textContent = `${distance.toFixed(1)} km`;
       
       const nameCell = row.querySelector('.point-name');
@@ -116,22 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`Failed to load mounts.json: ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log('Loaded mount points data:', data);
-
-      allMountPoints = data.streams.map(stream => ({
-        name: stream.mountPoint,
-        latitude: stream.latitude,
-        longitude: stream.longitude
-      }));
-
-      console.log('Processed mount points:', allMountPoints);
-
-      const nearestMountPoint = findNearestMountPoint(allMountPoints, lat, lon);
+      const {streams: mountPoints} = await response.json();
+      console.log('Loaded mount points data:', mountPoints);
+      const nearestMountPoint = findNearestMountPoint(mountPoints, lat, lon);
       console.log('Nearest mount point:', nearestMountPoint);
 
       displayMountPoint(nearestMountPoint);
-      displayMountPointsTable(allMountPoints, lat, lon);
+      displayMountPointsTable(mountPoints, lat, lon);
     } catch (error) {
       console.error('Error loading mount points:', error);
       mountPointDetails.textContent = 'Error loading mount points data: ' + error.message;
@@ -164,17 +156,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const template = document.getElementById('mount-point-template');
     const content = template.content.cloneNode(true);
 
-    content.querySelector('.mount-point-name').textContent = mountPoint.name;
+    content.querySelector('.mount-point-name').textContent = mountPoint.identifier;
     content.querySelector('.mount-location').textContent = 
         `${mountPoint.latitude.toFixed(2)}°, ${mountPoint.longitude.toFixed(2)}°`;
     content.querySelector('.user-location').textContent = 
         `${window.userLat.toFixed(2)}°, ${window.userLon.toFixed(2)}°`;
     content.querySelector('.location-method').textContent = window.locationMethod || 'Unknown';
+    // Add place information
+    content.querySelector('.mount-place').textContent = mountPoint.place || 'Unknown location';
 
     if (content) {
       const nameElement = content.querySelector('.mount-point-name');
       nameElement.addEventListener('click', (e) => {
-        copyToClipboard(mountPoint.name, e.target);
+        copyToClipboard(mountPoint.identifier, e.target);
       });
     }
 
@@ -208,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     mountPoints.forEach(point => {
       const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
-      console.log(`Distance to ${point.name}: ${distance} km`);
+      console.log(`Distance to ${point.identifier}: ${distance} km`);
       if (distance < minDistance) {
         minDistance = distance;
         nearest = point;
