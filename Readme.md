@@ -4,7 +4,7 @@ A web-based tool to find the nearest NTRIP mount point in the ASG-EUPOS network 
 
 ## 🔗 Live Demo
 
-Try it now: [NTRIP Mount Point Finder](https://pan-danio.github.io/ntrip-nearest/)
+Try it now: [NTRIP Mount Point Finder](https://danielmroczek.github.io/ntrip-nearest/)
 
 ## 🎯 Features
 
