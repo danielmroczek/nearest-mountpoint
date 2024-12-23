@@ -3,27 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ntrip Nearest</title>
+    <title data-i18n="title">Ntrip Nearest</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="script.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>NTRIP Mount Point Finder</h1>
-        <div class="subtitle">ASG-EUPOS Network</div>
+        <h1 data-i18n="title">NTRIP Mount Point Finder</h1>
+        <div class="subtitle" data-i18n="subtitle">ASG-EUPOS Network</div>
         <div class="card">
             <div id="mount-point-info">
-                <h2>Nearest Mount Point:</h2>
+                <h2><span data-i18n="nearestPoint">Nearest Mount Point</span>:</h2>
                 <p id="mount-point-details">
                     <span class="loading"></span>
-                    Fetching your location...
+                    <span data-i18n="fetchingLocation">Fetching your location...</span>
                 </p>
-                <button class="retry-button" onclick="retryLocation()" style="display: none;">
-                    Try Again
-                </button>
-                <button class="show-details-button" onclick="toggleMountPoints()">
-                    Show all mount points
-                </button>
+                <button class="retry-button" onclick="retryLocation()" data-i18n="tryAgain"></button>
+                <button class="show-details-button" onclick="toggleMountPoints()" data-i18n="showAll"></button>
             </div>
         </div>
     </div>
@@ -31,10 +28,10 @@
     <template id="mount-point-template">
         <div class="mount-point-name" role="button" title="Click to copy"></div>
         <div class="location-info">
-            <div>Mount point location: <strong class="mount-location"></strong></div>
-            <div>Mount point place: <strong class="mount-place"></strong></div>
-            <div>Your location: <strong class="user-location"></strong></div>
-            <div>Location method: <strong class="location-method"></strong></div>
+            <div><span data-i18n="mountPointLocation">Mount point location</span>: <strong class="mount-location"></strong></div>
+            <div><span data-i18n="mountPointPlace">Mount point place</span>: <strong class="mount-place"></strong></div>
+            <div><span data-i18n="yourLocation">Your location</span>: <strong class="user-location"></strong></div>
+            <div><span data-i18n="locationMethod">Location method</span>: <strong class="location-method"></strong></div>
         </div>
     </template>
 
@@ -42,10 +39,10 @@
         <table class="mount-points-table">
             <thead>
                 <tr>
-                    <th>Mount Point</th>
-                    <th>Location</th>
-                    <th>Place</th>
-                    <th>Distance</th>
+                    <th data-i18n="mountPointName">Mount Point</th>
+                    <th data-i18n="mountPointLocation">Location</th>
+                    <th data-i18n="mountPointPlace">Place</th>
+                    <th data-i18n="distance">Distance</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,13 +61,12 @@
 
     <template id="loading-template">
         <span class="loading"></span>
-        Fetching your location...
+        <span data-i18n="fetchingLocation">Fetching your location...</span>
     </template>
 
     <footer class="footer">
-        <a href="https://github.com/pan-danio/ntrip-nearest" target="_blank" rel="noopener">GitHub Repository</a>
+        <a href="https://github.com/danielmroczek/ntrip-nearest" target="_blank" rel="noopener">GitHub</a>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>

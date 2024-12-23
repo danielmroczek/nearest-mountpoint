@@ -1,3 +1,6 @@
+import translations from './translations.js';
+import GeoRegions from './geoRegions.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Script initialized');
 
@@ -51,8 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Add these new functions and variables
-  let allMountPoints = [];
   let tableVisible = false;
 
   function toggleMountPoints() {
@@ -60,17 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const table = document.querySelector('.mount-points-table');
     tableVisible = !tableVisible;
     
-    if (tableVisible) {
-      button.textContent = 'Hide mount points';
-      table.classList.add('visible');
-    } else {
-      button.textContent = 'Show all mount points';
-      table.classList.remove('visible');
-    }
+    const currentLang = document.documentElement.lang || 'en';
+    button.textContent = translations[currentLang][tableVisible ? 'hideAll' : 'showAll'];
+    table.classList.toggle('visible');
   }
 
   function displayMountPointsTable(mountPoints, userLat, userLon) {
     const tableTemplate = document.getElementById('mount-points-table-template');
+    applyTranslations(tableTemplate.content);
     const rowTemplate = document.getElementById('mount-point-row-template');
     const table = tableTemplate.content.cloneNode(true);
     const tbody = table.querySelector('tbody');
@@ -146,12 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showError(message) {
-    mountPointDetails.textContent = message;
-    retryButton.style.display = 'inline-block';
+    const lang = document.documentElement.lang || 'en';
+    mountPointDetails.textContent = translations[lang][message] || message;
+    retryButton.classList.add('visible');
   }
 
   function hideError() {
-    retryButton.style.display = 'none';
+    retryButton.classList.remove('visible');
     const loadingTemplate = document.getElementById('loading-template');
     mountPointDetails.innerHTML = '';
     mountPointDetails.appendChild(loadingTemplate.content.cloneNode(true));
@@ -170,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const template = document.getElementById('mount-point-template');
     const content = template.content.cloneNode(true);
+    applyTranslations(content);
     const mountLocation = content.querySelector('.mount-location');
 
     content.querySelector('.mount-point-name').textContent = mountPoint.name;
@@ -210,13 +210,17 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const position = await getPosition();
       const { latitude: userLat, longitude: userLon } = position.coords;
-      console.log(`Location obtained - Latitude: ${userLat}, Longitude: ${userLon}`);
       window.userLat = userLat;  // Store for use in displayMountPoint
       window.userLon = userLon;  // Store for use in displayMountPoint
+      
+      // Set language based on location
+      setLanguage(userLat, userLon);
+      applyTranslations(document);
+      
       await fetchMountPoints(userLat, userLon);
     } catch (error) {
       console.error('Main flow error:', error);
-      showError('Unable to retrieve your location.');
+      showError(translations[lang || 'en'].errorLocation);
     }
   }
 
@@ -255,8 +259,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function copyToClipboard(text, element) {
     navigator.clipboard.writeText(text).then(() => {
+      const lang = document.documentElement.lang || 'en';
       const feedback = document.createElement('span');
-      feedback.textContent = 'Copied!';
+      feedback.textContent = translations[lang].copied;
       feedback.className = 'copied-feedback';
       
       // Position the feedback relative to viewport
@@ -274,4 +279,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Make toggleMountPoints available globally
   window.toggleMountPoints = toggleMountPoints;
+
+  function setLanguage(lat, lon) {
+    const { lang } = GeoRegions.detectRegion(lat, lon);
+    
+    // Verify language is supported, fallback to English if not
+    if (!translations[lang]) {
+      console.warn(`Language ${lang} not supported, falling back to English`);
+      return 'en';
+    }
+
+    document.documentElement.setAttribute('lang', lang);
+    return lang;
+  }
+
+  // Remove old country detection functions as they're now in GeoRegions class
+
+  function translateElement(element, lang) {
+    const key = element.getAttribute('data-i18n');
+    if (!translations[lang][key]) return;
+
+    if (element.classList.contains('show-details-button')) {
+      element.textContent = translations[lang][tableVisible ? 'hideAll' : 'showAll'];
+    } else {
+      element.textContent = translations[lang][key] || element.textContent;
+    }
+  }
+
+  function applyTranslations(node) {
+    const currentLang = document.documentElement.lang || 'en';
+    node.querySelectorAll('[data-i18n]').forEach(element => {
+      translateElement(element, currentLang);
+    });
+  }
 });

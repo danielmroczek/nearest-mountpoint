@@ -119,6 +119,11 @@ h1 {
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
+    display: none; /* Hide by default */
+}
+
+.retry-button.visible {
+    display: inline-block;
 }
 
 .retry-button:active {
