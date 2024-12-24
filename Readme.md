@@ -23,12 +23,12 @@ Try it now: [NTRIP Mount Point Finder](https://danielmroczek.github.io/ntrip-nea
 - Pure JavaScript
 - HTML5 Geolocation API
 - CSS3 with CSS Variables
-- Node.js for data conversion
+- Node.js for getting mount points data
 
 ## 🚀 Getting Started
 
 1. Clone the repository
-2. *(Optional)* Run the update script: `node util/getMounts.js`
+2. Run script: `node util/getMounts.js` (no dependencies needed)
 3. Open `index.html` in your browser
 4. Allow location access when prompted
 
