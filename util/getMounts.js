@@ -4,6 +4,7 @@ const https = require('https');
 
 function convertSourceTableToJson(sourceTable) {
   const result = {
+    timestamp: new Date().toISOString(),
     streams: [],
     caster: null,
     network: null

@@ -130,7 +130,22 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error(`Failed to load mounts.json: ${response.status}`);
       }
 
-      const {streams: mountPoints} = await response.json();
+      const data = await response.json();
+      const mountPoints = data.streams;
+      
+      // Display update date
+      if (data.timestamp) {
+        const date = new Date(data.timestamp);
+        const updateDate = document.getElementById('update-date');
+        updateDate.textContent = new Intl.DateTimeFormat(document.documentElement.lang, {
+          year: 'numeric',
+          month: 'numeric',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        }).format(date);
+      }
+
       console.log('Loaded mount points data:', mountPoints);
       const nearestMountPoint = findNearestMountPoint(mountPoints, lat, lon);
       console.log('Nearest mount point:', nearestMountPoint);

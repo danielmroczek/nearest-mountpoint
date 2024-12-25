@@ -262,6 +262,14 @@ h1 {
     white-space: nowrap;
 }
 
+.update-info {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    text-align: right;
+    margin: 0.5em 0;
+    opacity: 0.8;
+}
+
 @media (max-width: 600px) {
     .mount-points-table th:nth-child(2),
     .mount-points-table td:nth-child(2) {

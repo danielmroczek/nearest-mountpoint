@@ -18,6 +18,7 @@ const translations = {
         errorLocation: "Unable to retrieve your location.",
         errorLoading: "Error loading mount points data",
         mountPointName: "Mount Point",
+        lastUpdate: "Last update of mount points database",
     },
     pl: {
         title: "Wyszukiwarka najbliższego punktu NTRIP",
@@ -37,6 +38,7 @@ const translations = {
         errorLocation: "Nie można pobrać lokalizacji.",
         errorLoading: "Błąd ładowania danych punktów",
         mountPointName: "Nazwa",
+        lastUpdate: "Ostatnia aktualizacja bazy punktów",
     },
     // Template for adding new languages
     /*
