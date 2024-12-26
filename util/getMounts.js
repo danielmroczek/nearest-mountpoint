@@ -2,9 +2,9 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
-function convertSourceTableToJson(sourceTable) {
+function convertSourceTableToJson(sourceTable, timestamp = new Date().toISOString()) {
   const result = {
-    timestamp: new Date().toISOString(),
+    timestamp,
     streams: [],
     caster: null,
     network: null
@@ -72,12 +72,14 @@ function fetchUrl(url, headers = {}) {
   return new Promise((resolve, reject) => {
     const lib = url.startsWith('https') ? https : http;
     const request = lib.get(url, { headers }, (response) => {
+      const responseDate = new Date(response.headers.date).toISOString();
+      console.log(`Response received at: ${responseDate}`);
       if (response.statusCode < 200 || response.statusCode >= 300) {
         return reject(new Error('statusCode=' + response.statusCode));
       }
       let data = '';
       response.on('data', chunk => data += chunk);
-      response.on('end', () => resolve(data));
+      response.on('end', () => resolve({ data, timestamp: responseDate }));
     });
     request.on('error', reject);
   });
@@ -90,7 +92,7 @@ async function getPlace(latitude, longitude) {
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
   console.log(`Url: ${url}`); 
   const response = await fetchUrl(url, { 'User-Agent': 'NtripCaster/1.0' });
-  const data = JSON.parse(response);
+  const data = JSON.parse(response.data);
   
   // Try to find the place in order of preference
   let place = null;
@@ -127,13 +129,13 @@ async function addPlacesToStreams(streams) {
 
 async function main() {
   try {
-    const data = await fetchUrl('http://system.asgeupos.pl:8086', { 'Ntrip-Version': 'Ntrip/2.0' });
-    const jsonResult = convertSourceTableToJson(data);
+    const { data, timestamp } = await fetchUrl('http://system.asgeupos.pl:8086', { 'Ntrip-Version': 'Ntrip/2.0' });
+    const result = convertSourceTableToJson(data, timestamp);
     
     console.log('Fetching place data for streams...');
-    jsonResult.streams = await addPlacesToStreams(jsonResult.streams);
+    result.streams = await addPlacesToStreams(result.streams);
 
-    fs.writeFile('mounts.json', JSON.stringify(jsonResult, null, 2), 'utf8', (err) => {
+    fs.writeFile('mounts.json', JSON.stringify(result, null, 2), 'utf8', (err) => {
       if (err) {
         console.error('Error writing file:', err);
         return;
