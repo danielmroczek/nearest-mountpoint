@@ -95,7 +95,7 @@ async function getPlace(latitude, longitude) {
   const data = JSON.parse(response.data);
   
   // Try to find the place in order of preference
-  let place = null;
+  let place = data.name;
   
   if (data.address?.city) {
     place = data.address.city;
@@ -106,9 +106,9 @@ async function getPlace(latitude, longitude) {
     return data.address.town;
   } else if (data.address?.village) {
     place = data.address.village;
-    // For villages, add municipality (gmina) if available
+    // For villages, add municipality (gmina) if available and different from village name
     const municipality = data.address?.municipality;
-    return municipality ? `${place} (${municipality})` : place;
+    return (municipality && !municipality.includes(place)) ? `${place} (${municipality})` : place;
   }
   
   return place;
