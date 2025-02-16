@@ -1,5 +1,5 @@
-const fs = require('fs/promises');
-const https = require('https');
+import { promises as fs } from 'fs';
+import { fetchUrl } from './network.js';
 
 // Add delay helper
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -7,31 +7,20 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 // Add Nominatim fetcher
 async function fetchLocationData(lat, lon) {
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
+  const headers = {
+    'User-Agent': 'NTRIP-Duplicate-Finder/1.0',
+    'Accept-Language': 'en'
+  };
   
-  return new Promise((resolve, reject) => {
-    const options = {
-      headers: {
-        'User-Agent': 'NTRIP-Duplicate-Finder/1.0',
-        'Accept-Language': 'en'
-      }
-    };
-
-    https.get(url, options, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          resolve(JSON.parse(data));
-        } catch (e) {
-          reject(new Error(`Failed to parse response: ${e.message}`));
-        }
-      });
-    }).on('error', reject);
-  });
+  try {
+    const { data } = await fetchUrl(url, headers);
+    return JSON.parse(data);
+  } catch (e) {
+    throw new Error(`Failed to fetch location data: ${e.message}`);
+  }
 }
 
-function findDuplicatePlaces(allMountPoints) {
-  // First pass - count places
+export function findDuplicatePlaces(allMountPoints) {
   const placeCount = {};
   const placeGroups = {};
   
@@ -42,7 +31,7 @@ function findDuplicatePlaces(allMountPoints) {
         placeGroups[point.place] = [];
         placeCount[point.place] = 0;
       }
-      placeGroups[point.place].push(point.mountPoint);
+      placeGroups[point.place].push(point.name);
       placeCount[point.place]++;
     }
   });
@@ -97,21 +86,21 @@ async function main() {
       console.log(`\n${place} (${count} streams):`);
       
       for (const mountPoint of mountPoints) {
-        const stream = data.streams.find(s => s.mountPoint === mountPoint);
-        console.log(`\n  - ${mountPoint}:`);
+        const stream = data.streams.find(s => s.name === mountPoint);
+        console.log(`\n  - ${stream.name}:`);
         console.log(`    Coordinates: ${stream.latitude}, ${stream.longitude}`);
         
-        try {
-          // Respect Nominatim usage policy with 1 second delay
-          await delay(1000);
+        // try {
+        //   // Respect Nominatim usage policy with 1 second delay
+        //   await delay(1000);
           
-          console.log('    Fetching location data...');
-          const locationData = await fetchLocationData(stream.latitude, stream.longitude);
-          console.log('    Location data:');
-          console.log(JSON.stringify(locationData, null, 2).split('\n').map(line => '      ' + line).join('\n'));
-        } catch (error) {
-          console.log(`    Failed to fetch location data: ${error.message}`);
-        }
+        //   console.log('    Fetching location data...');
+        //   const locationData = await fetchLocationData(stream.latitude, stream.longitude);
+        //   console.log('    Location data:');
+        //   console.log(JSON.stringify(locationData, null, 2).split('\n').map(line => '      ' + line).join('\n'));
+        // } catch (error) {
+        //   console.log(`    Failed to fetch location data: ${error.message}`);
+        // }
       }
     }
     

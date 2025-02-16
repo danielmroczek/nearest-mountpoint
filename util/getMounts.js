@@ -1,6 +1,5 @@
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
+import fs from 'fs';
+import { fetchUrl } from './network.js';
 
 function convertSourceTableToJson(sourceTable, timestamp = new Date().toISOString()) {
   const result = {
@@ -68,23 +67,6 @@ function convertSourceTableToJson(sourceTable, timestamp = new Date().toISOStrin
   return result;
 }
 
-function fetchUrl(url, headers = {}) {
-  return new Promise((resolve, reject) => {
-    const lib = url.startsWith('https') ? https : http;
-    const request = lib.get(url, { headers }, (response) => {
-      const responseDate = new Date(response.headers.date).toISOString();
-      console.log(`Response received at: ${responseDate}`);
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        return reject(new Error('statusCode=' + response.statusCode));
-      }
-      let data = '';
-      response.on('data', chunk => data += chunk);
-      response.on('end', () => resolve({ data, timestamp: responseDate }));
-    });
-    request.on('error', reject);
-  });
-}
-
 async function getPlace(latitude, longitude) {
   // Add delay to respect Nominatim usage policy
   await new Promise(resolve => setTimeout(resolve, 1000));
@@ -128,12 +110,18 @@ async function addPlacesToStreams(streams) {
 }
 
 async function main() {
+  const skipPlaces = process.argv.includes('--skip-places');
+  
   try {
     const { data, timestamp } = await fetchUrl('http://system.asgeupos.pl:8086', { 'Ntrip-Version': 'Ntrip/2.0' });
     const result = convertSourceTableToJson(data, timestamp);
     
-    console.log('Fetching place data for streams...');
-    result.streams = await addPlacesToStreams(result.streams);
+    if (!skipPlaces) {
+      console.log('Fetching place data for streams...');
+      result.streams = await addPlacesToStreams(result.streams);
+    } else {
+      console.log('Skipping place data fetch (--skip-places flag detected)');
+    }
 
     fs.writeFile('mounts.json', JSON.stringify(result, null, 2), 'utf8', (err) => {
       if (err) {
