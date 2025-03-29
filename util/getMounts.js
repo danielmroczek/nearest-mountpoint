@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { writeFile } from 'fs/promises';
 import { fetchUrl } from './network.js';
 
 function convertSourceTableToJson(sourceTable, timestamp = new Date().toISOString()) {
@@ -123,15 +123,10 @@ async function main() {
       console.log('Skipping place data fetch (--skip-places flag detected)');
     }
 
-    fs.writeFile('mounts.json', JSON.stringify(result, null, 2), 'utf8', (err) => {
-      if (err) {
-        console.error('Error writing file:', err);
-        return;
-      }
-      console.log('File has been saved as mounts.json');
-    });
+    await writeFile('mounts.json', JSON.stringify(result, null, 2), 'utf8');
+    console.log('File has been saved as mounts.json');
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error:', error);
   }
 }
 
