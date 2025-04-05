@@ -1,1 +1,3 @@
 mounts*.json
+*.csv
+.vscode
