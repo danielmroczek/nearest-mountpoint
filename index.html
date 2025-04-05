@@ -11,10 +11,18 @@
 <body>
     <div class="container">
         <h1 data-i18n="title">NTRIP Mount Point Finder</h1>
-        <div class="subtitle" data-i18n="subtitle">ASG-EUPOS Network</div>
+
+        <div class="network-selector">
+            <span data-i18n="selectNetwork">Select Network</span>:
+            <select id="network-select">
+                <option value="eupos" selected data-i18n="networkEupos">ASG-EUPOS</option>
+                <option value="rtk2go" data-i18n="networkRtk2go">RTK2Go</option>
+            </select>
+        </div>
         <div class="update-info">
             <span data-i18n="lastUpdate">Last update of mount points database</span>: <span id="update-date"></span>
         </div>
+        
         <div class="card">
             <div id="mount-point-info">
                 <h2><span data-i18n="nearestPoint">Nearest Mount Point</span>:</h2>
@@ -33,6 +41,7 @@
         <div class="location-info">
             <div><span data-i18n="mountPointLocation">Mount point location</span>: <strong class="mount-location"></strong></div>
             <div><span data-i18n="mountPointPlace">Mount point place</span>: <strong class="mount-place"></strong></div>
+            <div><span data-i18n="distance">Distance</span>: <strong class="mount-distance"></strong></div>
             <div><span data-i18n="yourLocation">Your location</span>: <strong class="user-location"></strong></div>
             <div><span data-i18n="locationMethod">Location method</span>: <strong class="location-method"></strong></div>
         </div>

@@ -2,7 +2,7 @@ const translations = {
     en: {
         // Default language - must always exist
         title: "NTRIP Mount Point Finder",
-        subtitle: "ASG-EUPOS Network",
+        subtitle: "ASG-EUPOS Network", // Kept for backward compatibility
         nearestPoint: "Nearest Mount Point",
         fetchingLocation: "Fetching your location...",
         tryAgain: "Try Again",
@@ -19,10 +19,13 @@ const translations = {
         errorLoading: "Error loading mount points data",
         mountPointName: "Mount Point",
         lastUpdate: "Last update of mount points database",
+        selectNetwork: "Select Network",
+        networkEupos: "ASG-EUPOS",
+        networkRtk2go: "RTK2Go"
     },
     pl: {
         title: "Wyszukiwarka najbliższego punktu NTRIP",
-        subtitle: "Sieć ASG-EUPOS",
+        subtitle: "Sieć ASG-EUPOS", // Kept for backward compatibility
         nearestPoint: "Najbliższy punkt montowania",
         fetchingLocation: "Pobieranie lokalizacji...",
         tryAgain: "Spróbuj ponownie",
@@ -39,12 +42,18 @@ const translations = {
         errorLoading: "Błąd ładowania danych punktów",
         mountPointName: "Nazwa",
         lastUpdate: "Ostatnia aktualizacja bazy punktów",
+        selectNetwork: "Wybierz sieć",
+        networkEupos: "ASG-EUPOS",
+        networkRtk2go: "RTK2Go"
     },
     // Template for adding new languages
     /*
     de: {
         title: "NTRIP Mount Point Finder",
-        subtitle: "ASG-EUPOS Netzwerk",
+        subtitle: "ASG-EUPOS Netzwerk", // Kept for backward compatibility
+        selectNetwork: "Netzwerk auswählen",
+        networkEupos: "ASG-EUPOS",
+        networkRtk2go: "RTK2Go"
         // ... add all required translations
     },
     */

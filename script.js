@@ -126,9 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function fetchMountPoints(lat, lon) {
     try {
-      const response = await fetch('mounts.json');
+      // Get network file based on selection
+      const networkFile = networks[currentNetwork].file;
+      
+      const response = await fetch(networkFile);
       if (!response.ok) {
-        throw new Error(`Failed to load mounts.json: ${response.status}`);
+        throw new Error(`Failed to load ${networkFile}: ${response.status}`);
       }
 
       const data = await response.json();
@@ -147,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).format(date);
       }
 
-      console.log('Loaded mount points data:', mountPoints);
+      console.log(`Loaded ${currentNetwork} mount points data:`, mountPoints);
       const nearestMountPoint = findNearestMountPoint(mountPoints, lat, lon);
       console.log('Nearest mount point:', nearestMountPoint);
 
@@ -173,7 +176,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function retryLocation() {
-    hideError();
+    const locationIndicator = document.querySelector('.location-indicator');
+    if (locationIndicator) {
+      locationIndicator.textContent = '📍 ' + (translations[document.documentElement.lang] || translations.en).findingLocation;
+    }
+    
+    const mountPointDetails = document.getElementById('mount-point-details');
+    mountPointDetails.innerHTML = '';
+    
+    const loadingMessage = document.createElement('p');
+    loadingMessage.classList.add('loading-message');
+    loadingMessage.textContent = (translations[document.documentElement.lang] || translations.en).findingLocation;
+    mountPointDetails.appendChild(loadingMessage);
+    
+    const mountPointsList = document.getElementById('mount-points-list');
+    if (mountPointsList) {
+      mountPointsList.innerHTML = '';
+    }
+    
+    // Reset currentNetwork to selected value in case this is a manual retry
+    currentNetwork = networkSelect.value;
+    
     initializeLocationSearch();
   }
 
@@ -198,6 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = `https://www.openstreetmap.org/?mlat=${mountPoint.latitude}&mlon=${mountPoint.longitude}#map=15/${mountPoint.latitude}/${mountPoint.longitude}`;
         window.open(url, '_blank');
     });
+
+    // Calculate and display distance to the nearest mountpoint
+    const distance = getDistance(window.userLat, window.userLon, mountPoint.latitude, mountPoint.longitude);
+    content.querySelector('.mount-distance').textContent = `${distance.toFixed(1)} km`;
 
     const userLocation = content.querySelector('.user-location')
     userLocation.textContent = 
@@ -317,4 +344,33 @@ document.addEventListener('DOMContentLoaded', () => {
       translateElement(element, currentLang);
     });
   }
+
+  // Network configuration
+  const networks = {
+    eupos: {
+      file: 'mounts.json',
+      name: 'ASG-EUPOS'
+    },
+    rtk2go: {
+      file: 'mountsRtk2Go.json',
+      name: 'RTK2Go'
+    }
+  };
+  
+  let currentNetwork = 'eupos';
+  
+  // Get DOM elements
+  const networkSelect = document.getElementById('network-select');
+
+  // Add event listener to network select
+  networkSelect.addEventListener('change', function() {
+    currentNetwork = this.value;
+    
+    // Reset state and fetch new data
+    if (window.userLat && window.userLon) {
+      fetchMountPoints(window.userLat, window.userLon);
+    } else {
+      retryLocation();
+    }
+  });
 });
