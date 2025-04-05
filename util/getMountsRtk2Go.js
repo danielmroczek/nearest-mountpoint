@@ -6,8 +6,27 @@ import path from 'path';
 function parseRtk2goCsv(csvData) {
   const lines = csvData.split('\n');
   const mounts = [];
+  let networkInfo = null;
   
   for (const line of lines) {
+    // Parse network information
+    if (line.startsWith('NET;')) {
+      const parts = line.split(';');
+      if (parts.length >= 9) {
+        networkInfo = {
+          protocol: parts[1],
+          name: parts[2],
+          requiresAuthentication: parts[3],
+          hasFeesApplied: parts[4] === 'Y',
+          website: parts[5],
+          streamUrl: parts[6],
+          email: parts[7],
+          miscInfo: parts[8]
+        };
+      }
+      continue;
+    }
+    
     if (!line.startsWith('STR;')) continue;
     
     const parts = line.split(';');
@@ -35,7 +54,7 @@ function parseRtk2goCsv(csvData) {
     });
   }
   
-  return mounts;
+  return { mounts, networkInfo };
 }
 
 // Function to get location data from OpenStreetMap
@@ -65,9 +84,23 @@ async function main() {
   const skipPlaces = process.argv.includes('--skip-places');
   const saveCsv = process.argv.includes('--save-csv');
   const outputPath = path.resolve('mountsRtk2Go.json');
+  const url = 'http://www.rtk2go.com:2101';
+  
+  // Parse nominatim-delay argument
+  let nominatimDelay = 1000; // Default delay in ms
+  const delayArgIndex = process.argv.findIndex(arg => arg === '--nominatim-delay');
+  if (delayArgIndex !== -1 && process.argv.length > delayArgIndex + 1) {
+    const customDelay = parseInt(process.argv[delayArgIndex + 1]);
+    if (!isNaN(customDelay) && customDelay > 0) {
+      nominatimDelay = customDelay;
+      console.log(`Using custom Nominatim delay: ${nominatimDelay}ms`);
+    } else {
+      console.warn(`Invalid nominatim delay value, using default: ${nominatimDelay}ms`);
+    }
+  }
   
   try {
-    const { data, timestamp } = await fetchUrl('http://www.rtk2go.com:2101', { 'Ntrip-Version': 'Ntrip/2.0', 'User-Agent': 'NtripCaster/1.0' });
+    const { data, timestamp } = await fetchUrl(url, { 'Ntrip-Version': 'Ntrip/2.0', 'User-Agent': 'NtripCaster/1.0' });
     
     // Only save the CSV file if the flag is set
     if (saveCsv) {
@@ -76,17 +109,15 @@ async function main() {
     }
 
     // Parse the CSV data
-    const mounts = parseRtk2goCsv(data);
+    const { mounts, networkInfo } = parseRtk2goCsv(data);
     
     // If not skipping places, enrich with location data from OSM
     if (!skipPlaces) {
-      console.log('Fetching location data from OpenStreetMap...');
+      console.log(`Fetching location data from OpenStreetMap (delay: ${nominatimDelay}ms)...`);
       for (let i = 0; i < mounts.length; i++) {
         const mount = mounts[i];
         // Add a delay to avoid overwhelming the OSM API
-        if (i > 0 && i % 5 === 0) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
-        }
+        await new Promise(resolve => setTimeout(resolve, nominatimDelay));
         
         // Get location data
         const locationData = await getLocationFromOSM(mount.latitude, mount.longitude);
@@ -115,9 +146,11 @@ async function main() {
     // Create the output structure
     const output = {
       source: 'RTK2go',
+      sourceUrl: url,
       timestamp: timestamp || new Date().toISOString(),
-      count: mounts.length,
-      mounts: mounts
+      streams: mounts,
+      caster: null,
+      network: networkInfo
     };
     
     // Save the JSON file

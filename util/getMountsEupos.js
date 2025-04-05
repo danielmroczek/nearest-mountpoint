@@ -1,8 +1,11 @@
 import { writeFile } from 'fs/promises';
 import { fetchUrl } from './network.js';
+const url = 'http://system.asgeupos.pl:8086';
 
 function convertSourceTableToJson(sourceTable, timestamp = new Date().toISOString()) {
   const result = {
+    source: 'ASG-EUPOS',
+    sourceUrl: url,
     timestamp,
     streams: [],
     caster: null,
@@ -113,7 +116,7 @@ async function main() {
   const skipPlaces = process.argv.includes('--skip-places');
   
   try {
-    const { data, timestamp } = await fetchUrl('http://system.asgeupos.pl:8086', { 'Ntrip-Version': 'Ntrip/2.0' });
+    const { data, timestamp } = await fetchUrl(url, { 'Ntrip-Version': 'Ntrip/2.0' });
     const result = convertSourceTableToJson(data, timestamp);
     
     if (!skipPlaces) {
