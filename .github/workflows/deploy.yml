@@ -38,7 +38,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4.1.0
       - name: Build
-        run: node ./util/getMounts.js
+        run: make install
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
