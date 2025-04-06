@@ -1,0 +1,17 @@
+{
+  "networks": [
+    {
+      "id": "eupos",
+      "name": "ASG-EUPOS",
+      "url": "http://system.asgeupos.pl:8086",
+      "websiteUrl": "http://www.asgeupos.pl",
+      "default": true
+    },
+    {
+      "id": "rtk2go",
+      "name": "RTK2Go",
+      "url": "http://www.rtk2go.com:2101",
+      "websiteUrl": "http://www.rtk2go.com"
+    }
+  ]
+}

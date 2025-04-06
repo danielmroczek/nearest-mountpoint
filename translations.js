@@ -21,7 +21,8 @@ const translations = {
         lastUpdate: "Last update of mount points database",
         selectNetwork: "Select Network",
         networkEupos: "ASG-EUPOS",
-        networkRtk2go: "RTK2Go"
+        networkRtk2go: "RTK2Go",
+        country: "Country"
     },
     pl: {
         title: "Wyszukiwarka najbliższego punktu NTRIP",
@@ -44,7 +45,8 @@ const translations = {
         lastUpdate: "Ostatnia aktualizacja bazy punktów",
         selectNetwork: "Wybierz sieć",
         networkEupos: "ASG-EUPOS",
-        networkRtk2go: "RTK2Go"
+        networkRtk2go: "RTK2Go",
+        country: "Kraj"
     },
     // Template for adding new languages
     /*
@@ -69,5 +71,21 @@ Object.keys(translations).forEach(lang => {
         }
     });
 });
+
+// Function to dynamically load network translations
+export function addNetworkTranslations(networksData) {
+    networksData.forEach(network => {
+        const key = `network${network.id.charAt(0).toUpperCase() + network.id.slice(1)}`;
+        
+        // Add to each language if not present
+        Object.keys(translations).forEach(lang => {
+            if (!translations[lang][key]) {
+                translations[lang][key] = network.name;
+            }
+        });
+    });
+    
+    return translations;
+}
 
 export default translations;

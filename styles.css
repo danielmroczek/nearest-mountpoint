@@ -172,17 +172,26 @@ h1 {
 
 .mount-points-table th:nth-child(2),
 .mount-points-table td:nth-child(2) {
-    width: 22%; /* Location */
+    width: 20%; /* Location */
 }
 
 .mount-points-table th:nth-child(3),
 .mount-points-table td:nth-child(3) {
-    width: 35%; /* Place */
+    width: 32%; /* Place */
 }
 
 .mount-points-table th:nth-child(4),
 .mount-points-table td:nth-child(4) {
-    width: 15%; /* Distance */
+    width: 10%; /* Country - smaller */
+    width: min-content; /* Use content width when possible */
+    max-width: 10%;
+}
+
+.mount-points-table th:nth-child(5),
+.mount-points-table td:nth-child(5) {
+    width: 10%; /* Distance - smaller */
+    width: min-content; /* Use content width when possible */
+    max-width: 10%;
     text-align: right;
 }
 
@@ -253,6 +262,13 @@ h1 {
     white-space: nowrap;
 }
 
+.point-country {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text-color);
+}
+
 .update-info {
     font-size: 0.85em;
     color: var(--text-secondary);
@@ -289,19 +305,26 @@ h1 {
         display: none; /* Hide location on small screens */
     }
 
-    .mount-points-table th:nth-child(1),
-    .mount-points-table td:nth-child(1) {
-        width: 50%; /* Increase name width */
-    }
-
     .mount-points-table th:nth-child(3),
     .mount-points-table td:nth-child(3) {
         display: none; /* Hide place on small screens */
     }
 
+    .mount-points-table th:nth-child(1),
+    .mount-points-table td:nth-child(1) {
+        width: 60%; /* Increase name width */
+    }
+
     .mount-points-table th:nth-child(4),
     .mount-points-table td:nth-child(4) {
-        width: 50%; /* Slightly increase distance width */
+        width: min-content; /* Use minimum content width */
+        max-width: 20%; /* Maximum country width on small screens */
+    }
+
+    .mount-points-table th:nth-child(5),
+    .mount-points-table td:nth-child(5) {
+        width: min-content; /* Use minimum content width */
+        max-width: 20%; /* Maximum distance width on small screens */
     }
 }
 
@@ -364,21 +387,28 @@ h1 {
     /* Adjust table column widths for better proportions on wider screens */
     .mount-points-table th:nth-child(1),
     .mount-points-table td:nth-child(1) {
-        width: 25%; /* Mount point name */
+        width: 22%; /* Mount point name */
     }
 
     .mount-points-table th:nth-child(2),
     .mount-points-table td:nth-child(2) {
-        width: 15%; /* Location */
+        width: 16%; /* Location */
     }
 
     .mount-points-table th:nth-child(3),
     .mount-points-table td:nth-child(3) {
-        width: 45%; /* Place */
+        width: 37%; /* Place */
     }
 
     .mount-points-table th:nth-child(4),
     .mount-points-table td:nth-child(4) {
-        width: 15%; /* Distance */
+        width: min-content; /* Use minimum content width */
+        max-width: 12%; /* Country */
+    }
+
+    .mount-points-table th:nth-child(5),
+    .mount-points-table td:nth-child(5) {
+        width: min-content; /* Use minimum content width */
+        max-width: 13%; /* Distance */
     }
 }
