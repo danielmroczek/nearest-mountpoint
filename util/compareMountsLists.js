@@ -1,3 +1,18 @@
+/**
+ * Mount Points Comparison Utility
+ * 
+ * This script compares data from two different sources of NTRIP mount points:
+ * 1. A local JSON file (mounts.json) containing stream data
+ * 2. Website-sourced data (mountsWebsite.json) containing station information
+ * 
+ * The script performs three main functions:
+ * - Identifies stations with significant geographic discrepancies between the two sources
+ * - Lists mount points that exist only in the streams data but not in the website data
+ * - Lists mount points that exist only in the website data but not in the streams data
+ * 
+ * Each discrepancy is enriched with reverse-geocoded location information from OpenStreetMap.
+ */
+
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -44,6 +59,13 @@ streams.forEach(stream => {
 // Sort by distance
 distances.sort((a, b) => b.distance - a.distance);
 
+/**
+ * Fetches reverse geocoding information from OpenStreetMap Nominatim API
+ * 
+ * @param {number} lat - Latitude coordinate
+ * @param {number} lon - Longitude coordinate
+ * @returns {Promise<Object>} Object containing location information (country, state, county, etc.)
+ */
 async function getReverseGeocode(lat, lon) {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
     const { data } = await fetchUrl(url, { 'User-Agent': 'NearestMountpoint/1.0' });
@@ -58,17 +80,34 @@ async function getReverseGeocode(lat, lon) {
     };
 }
 
+/**
+ * Finds stream coordinates by ID
+ * 
+ * @param {string} id - The ID of the stream to look up
+ * @returns {Object|null} Object containing lat/lon coordinates or null if not found
+ */
 function getStreamCoordinates(id) {
     const stream = streams.find(s => s.identifier.replace('_RTCM_3_2', '') === id);
     return stream ? { lat: stream.latitude, lon: stream.longitude } : null;
 }
 
+/**
+ * Finds station coordinates by ID
+ * 
+ * @param {string} id - The ID of the station to look up
+ * @returns {Object|null} Object containing lat/lon coordinates or null if not found
+ */
 function getStationCoordinates(id) {
     const station = stations.find(s => s.ID === id);
     return station ? { lat: station.Latitude, lon: station.Longitude } : null;
 }
 
-// Modify the main function to be async
+/**
+ * Main function that:
+ * 1. Reports discrepancies between matching mount points with different coordinates
+ * 2. Lists mount points unique to the streams data
+ * 3. Lists mount points unique to the stations data
+ */
 async function main() {
     console.log('Distances over ' + DISTANCE_THRESHOLD_KM + 'km between points with the same ID:');
     for (const item of distances) {

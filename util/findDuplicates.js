@@ -1,10 +1,38 @@
+/**
+ * NTRIP Mount Points Duplicate Finder
+ * 
+ * This utility analyzes a JSON file containing NTRIP mount points data to identify
+ * multiple streams that appear to be in the same location. This can help network
+ * administrators identify redundant mount points or potential configuration issues.
+ * 
+ * The script:
+ * 1. Loads mount point data from a specified JSON file
+ * 2. Groups mount points by location/place
+ * 3. Identifies locations with multiple mount points
+ * 4. Provides detailed information about each duplicate set
+ * 
+ * Usage: node findDuplicates.js <path-to-mountpoints-json>
+ */
+
 import { promises as fs } from 'fs';
 import { fetchUrl } from './network.js';
 
-// Add delay helper
+/**
+ * Adds a delay to respect rate limits when making API calls
+ * 
+ * @param {number} ms - Milliseconds to delay
+ * @returns {Promise<void>} Promise that resolves after specified delay
+ */
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// Add Nominatim fetcher
+/**
+ * Fetches location data from OpenStreetMap Nominatim API
+ * 
+ * @param {number} lat - Latitude coordinate
+ * @param {number} lon - Longitude coordinate
+ * @returns {Promise<Object>} JSON response from Nominatim API
+ * @throws {Error} If the API request fails
+ */
 async function fetchLocationData(lat, lon) {
   const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
   const headers = {
@@ -20,6 +48,12 @@ async function fetchLocationData(lat, lon) {
   }
 }
 
+/**
+ * Analyzes mount points to find locations with multiple streams
+ * 
+ * @param {Array<Object>} allMountPoints - Array of mount point objects
+ * @returns {Array<Object>} Array of duplicate locations with mount point details
+ */
 export function findDuplicatePlaces(allMountPoints) {
   const placeCount = {};
   const placeGroups = {};
@@ -48,6 +82,10 @@ export function findDuplicatePlaces(allMountPoints) {
   return duplicates;
 }
 
+/**
+ * Main execution function that processes command line arguments,
+ * loads the data file, and calls the duplicate finder
+ */
 async function main() {
   console.log('=================================');
   console.log('NTRIP Mount Points Duplicate Finder');
