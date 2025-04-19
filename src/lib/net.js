@@ -157,3 +157,34 @@ export async function fetchUrl(url, headers = {}, options = {}) {
     return await fetchNtripV1(url, headers, { timeoutMs });
   }
 }
+/**
+ * Get location data from OpenStreetMap Nominatim for given coordinates
+ * @param {number} lat - Latitude
+ * @param {number} lon - Longitude
+ * @param {number} delay - Delay in ms to respect Nominatim usage policy
+ * @param {string} streamName - The name of the stream being processed
+ * @returns {Promise<Object>} Location data
+ */
+
+export async function getLocationFromNominatim(lat, lon, delay = 1000, streamName = 'Unknown') {
+  // Add delay to respect Nominatim usage policy
+  await new Promise(resolve => setTimeout(resolve, delay));
+
+  console.log(`Requesting Nominatim data for: ${streamName} at coordinates [${lat}, ${lon}]`);
+
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`;
+
+  try {
+    const { data } = await fetchUrl(url, {
+      'User-Agent': 'NearestMountpoint/1.0',
+      'Accept': 'application/json'
+    });
+
+    // Parse the JSON response and return it directly
+    const locationData = JSON.parse(data);
+    return locationData;
+  } catch (error) {
+    console.warn(`Failed to get location data for ${streamName} [${lat},${lon}]: ${error.message}`);
+    return null;
+  }
+}

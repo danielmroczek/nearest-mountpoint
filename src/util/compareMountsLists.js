@@ -16,8 +16,8 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { fetchUrl } from './network.js';
-import { getDistance } from './geo.js';
+import { fetchUrl } from '../lib/net.js';
+import { getDistance } from '../../public/script/geo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

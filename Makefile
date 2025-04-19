@@ -1,4 +1,4 @@
 .PHONY: install
 
 install:
-	node ./util/getMountsFromNetworks.js
+	node ./src/getMountsFromNetworks.js

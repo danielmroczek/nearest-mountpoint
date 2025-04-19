@@ -15,7 +15,7 @@
  */
 
 import { promises as fs } from 'fs';
-import { fetchUrl } from './network.js';
+import { fetchUrl } from '../lib/net.js';
 
 /**
  * Adds a delay to respect rate limits when making API calls

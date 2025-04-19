@@ -75,7 +75,8 @@ Object.keys(translations).forEach(lang => {
 // Function to dynamically load network translations
 export function addNetworkTranslations(networksData) {
     networksData.forEach(network => {
-        const key = `network${network.id.charAt(0).toUpperCase() + network.id.slice(1)}`;
+        // Create standardized key from network name
+        const key = `network${network.name.charAt(0).toUpperCase() + network.name.slice(1).replace(/[^a-zA-Z0-9]/g, '')}`;
         
         // Add to each language if not present
         Object.keys(translations).forEach(lang => {

@@ -1,6 +1,6 @@
 import translations from './translations.js';
-import GeoRegions from './geoRegions.js';
-import { getDistance } from './util/geo.js';
+import GeoRegions from './regions.js';
+import { getDistance } from './geo.js';
 
 document.addEventListener('DOMContentLoaded', initializeApp);
 
@@ -15,7 +15,7 @@ async function initializeApp() {
     const networksData = await networksResponse.json();
     
     // Setup networks
-    setupNetworks(networksData.networks);
+    setupNetworks(networksData);
     
     // Start location search
     initializeLocationSearch();
@@ -37,22 +37,21 @@ function setupNetworks(networksData) {
   
   networksData.forEach(network => {
     // Add to networks object
-    networks[network.id] = {
-      name: network.name,
-      id: network.id,
-      country: network.country
-    };
+    networks[network.name] = network;
     
     // Create option element
     const option = document.createElement('option');
-    option.value = network.id;
+    option.value = network.name;
     option.textContent = network.name;
-    option.setAttribute('data-i18n', `network${network.id.charAt(0).toUpperCase() + network.id.slice(1)}`);
+    
+    // Create a standardized i18n key from network name
+    const i18nKey = `network${network.name.charAt(0).toUpperCase() + network.name.slice(1)}`;
+    option.setAttribute('data-i18n', i18nKey);
     
     // Set default if specified
     if (network.default) {
       option.selected = true;
-      defaultNetwork = network.id;
+      defaultNetwork = network.name;
     }
     
     networkSelect.appendChild(option);
@@ -60,6 +59,31 @@ function setupNetworks(networksData) {
   
   // Set current network
   currentNetwork = defaultNetwork || Object.keys(networks)[0];
+  
+  // Add event listener to reload data when network changes
+  networkSelect.addEventListener('change', function() {
+    currentNetwork = this.value;
+    // Clear current display
+    mountPointDetails.innerHTML = '';
+    // Add loading indicator
+    const loadingTemplate = document.getElementById('loading-template');
+    mountPointDetails.appendChild(loadingTemplate.content.cloneNode(true));
+    
+    // Remove existing table if present
+    const existingTable = document.querySelector('.mount-points-table');
+    if (existingTable) {
+      existingTable.remove();
+      tableVisible = false;
+    }
+    
+    // Reload data for new network
+    if (window.userLat && window.userLon) {
+      fetchMountPoints(window.userLat, window.userLon);
+    } else {
+      // If we don't have user position yet, restart the location search
+      initializeLocationSearch();
+    }
+  });
 }
 
 let networks = {};
@@ -68,9 +92,20 @@ let currentNetwork = '';
 const mountPointDetails = document.getElementById('mount-point-details');
 const retryButton = document.querySelector('.retry-button');
 
-if (!mountPointDetails) {
-  console.error('Mount point details element not found');
-  return;
+// Remove the illegal return statement and wrap the check in a function
+function checkElements() {
+  if (!mountPointDetails) {
+    console.error('Mount point details element not found');
+    return false;
+  }
+  return true;
+}
+
+// Execute the check when DOM is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', checkElements);
+} else {
+  checkElements();
 }
 
 const getGeoIPLocation = async () => {
@@ -118,6 +153,7 @@ const getPosition = () => {
 let tableVisible = false;
 
 function toggleMountPoints() {
+  // TODO: Add a check to ensure the table is not already visible before toggling
   const button = document.querySelector('.show-details-button');
   const table = document.querySelector('.mount-points-table');
   tableVisible = !tableVisible;
@@ -136,6 +172,7 @@ function displayMountPointsTable(mountPoints, userLat, userLon) {
 
   // Sort mount points by distance
   mountPoints.sort((a, b) => {
+    // TODO: Cache distances to avoid recalculating
     const distA = getDistance(userLat, userLon, a.latitude, a.longitude);
     const distB = getDistance(userLat, userLon, b.latitude, b.longitude);
     return distA - distB;
@@ -216,8 +253,8 @@ function displayMountPointsTable(mountPoints, userLat, userLon) {
 
 async function fetchMountPoints(lat, lon) {
   try {
-    // Get network file based on selection
-    const networkFile = `mounts-${networks[currentNetwork].name}.json`;
+    // Get sanitized network name for file path
+    const networkFile = `mounts/${currentNetwork}.json`;
     
     const response = await fetch(networkFile);
     if (!response.ok) {

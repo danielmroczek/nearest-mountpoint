@@ -1,3 +1,5 @@
 mounts*.json
+mounts/
 *.csv
 .vscode
+public/networks.json
