@@ -12,8 +12,28 @@
       "paid": false
     },
     {
-      "name": "nadowski",
+      "name": "Nadonet (Nadotech)",
       "url": "http://nadowski.net:8082",
+      "paid": true
+    },
+    {
+      "name": "RtkNet (Art-Geo)",
+      "url": "http://rtknet.pl:2101",
+      "paid": true
+    },
+    {
+      "name": "HxGN SmartNet",
+      "url": "http://pl.nrtk.eu:2101", 
+      "paid": true
+    },
+    {
+      "name": "TPI NETpro",
+      "url": "http://rtk.topnetlive.com:2101",
+      "paid": true
+    },
+    {
+      "name": "VRSNet",
+      "url": "http://siec.vrsnet.pl:2101",
       "paid": true
     }
   ]
