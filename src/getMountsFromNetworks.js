@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { parseCommandLineArgs } from './lib/cli.js';
+import { parseCommandLineArgs, generateSafeFilename } from './lib/cli.js';
 import { processMountPoints } from './lib/mounts.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -45,13 +45,19 @@ async function main() {
       
       console.log(`Processing network: ${network.name}`);
       try {
-        // Use network name directly as filename, assuming it's already safe
+        // Generate safe filename for this network
+        const safeFilename = generateSafeFilename(network.name);
+        
+        // Process mount points and save to file with safe name
         await processMountPoints(
           network.name, 
           network.url, 
-          options       
+          {...options, safeFilename},
         );
-        successfulNetworks.push(network);
+        
+        // Add safe filename to network object before storing
+        const networkCopy = {...network, safeFilename};
+        successfulNetworks.push(networkCopy);
         console.log(`Completed network: ${network.name}\n`);
       } catch (err) {
         console.error(`Failed to process network: ${network.name}`, err);

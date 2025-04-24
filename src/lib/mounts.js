@@ -7,14 +7,12 @@ import { parseNtripSourceTable } from './ntrip.js';
  * Process and save mount points data from an NTRIP source
  * @param {string} name - The name of the NTRIP source
  * @param {string} url - The URL of the NTRIP source
- * @param {Function} parseFunction - Function to parse the source data
  * @param {Object} options - Command line options
- * @param {Object} headers - Additional headers for the request
  * @returns {Promise<void>}
  */
 
 export async function processMountPoints(name, url, options) {
-  const outputPath = path.join(options.mountsDir, `${name}.json`);
+  const outputPath = path.join(options.mountsDir, `${options.safeFilename}.json`);
 
   try {
     // Add common headers for NTRIP requests
@@ -27,7 +25,7 @@ export async function processMountPoints(name, url, options) {
 
     // Save the raw data file if the flag is set
     if (options.saveCsv) {
-      const rawDataPath = path.join(options.mountsDir, `${name}.csv`);
+      const rawDataPath = path.join(options.mountsDir, `${options.safeFilename}.csv`);
       await fs.writeFile(rawDataPath, data, 'utf8');
       console.log(`Raw data file has been saved as ${rawDataPath}`);
     }

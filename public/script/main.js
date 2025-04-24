@@ -253,8 +253,15 @@ function displayMountPointsTable(mountPoints, userLat, userLon) {
 
 async function fetchMountPoints(lat, lon) {
   try {
-    // Get sanitized network name for file path
-    const networkFile = `mounts/${currentNetwork}.json`;
+    // Get current network object
+    const network = networks[currentNetwork];
+    if (!network) {
+      throw new Error(`Network ${currentNetwork} not found in configuration`);
+    }
+    
+    // Use safe filename from network object if available, fallback to network name
+    const safeFilename = network.safeFilename || currentNetwork;
+    const networkFile = `mounts/${safeFilename}.json`;
     
     const response = await fetch(networkFile);
     if (!response.ok) {

@@ -27,3 +27,17 @@ export function parseCommandLineArgs(argv) {
 
   return options;
 }
+
+/**
+ * Generates a safe filename from a given string by removing special characters
+ * and converting to lowercase.
+ * @param {string} name - The original string to convert to a safe filename
+ * @returns {string} A safe filename without special characters
+ */
+export function generateSafeFilename(name) {
+  return name
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '_') // Replace special chars with underscore
+    .replace(/^_+|_+$/g, '');     // Remove leading/trailing underscores
+}
