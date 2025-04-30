@@ -15,8 +15,12 @@
         <div class="network-selector">
             <span data-i18n="selectNetwork">Select Network</span>:
             <select id="network-select">
-                <option value="eupos" selected data-i18n="networkEupos">ASG-EUPOS</option>
-                <option value="rtk2go" data-i18n="networkRtk2go">RTK2Go</option>
+                <optgroup label="Free" data-i18n="freeNetworks">
+                    <!-- Free networks will be dynamically added by JS -->
+                </optgroup>
+                <optgroup label="Paid" data-i18n="paidNetworks">
+                    <!-- Paid networks will be dynamically added by JS -->
+                </optgroup>
             </select>
         </div>
         <div class="update-info">

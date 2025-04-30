@@ -33,6 +33,15 @@ function setupNetworks(networksData) {
   const networkSelect = document.getElementById('network-select');
   networkSelect.innerHTML = '';
   
+  // Create optgroups for free and paid
+  const freeOptGroup = document.createElement('optgroup');
+  freeOptGroup.label = translations[document.documentElement.lang]?.freeNetworks || 'Free';
+  freeOptGroup.setAttribute('data-i18n', 'freeNetworks');
+
+  const paidOptGroup = document.createElement('optgroup');
+  paidOptGroup.label = translations[document.documentElement.lang]?.paidNetworks || 'Paid';
+  paidOptGroup.setAttribute('data-i18n', 'paidNetworks');
+
   let defaultNetwork = null;
   
   networksData.forEach(network => {
@@ -44,18 +53,22 @@ function setupNetworks(networksData) {
     option.value = network.name;
     option.textContent = network.name;
     
-    // Create a standardized i18n key from network name
-    const i18nKey = `network${network.name.charAt(0).toUpperCase() + network.name.slice(1)}`;
-    option.setAttribute('data-i18n', i18nKey);
-    
     // Set default if specified
     if (network.default) {
       option.selected = true;
       defaultNetwork = network.name;
     }
     
-    networkSelect.appendChild(option);
+    if (network.paid) {
+      paidOptGroup.appendChild(option);
+    } else {
+      freeOptGroup.appendChild(option);
+    }
   });
+  
+  // Add optgroups to select
+  if (freeOptGroup.children.length > 0) networkSelect.appendChild(freeOptGroup);
+  if (paidOptGroup.children.length > 0) networkSelect.appendChild(paidOptGroup);
   
   // Set current network
   currentNetwork = defaultNetwork || Object.keys(networks)[0];
@@ -485,6 +498,18 @@ function setLanguage(lat, lon) {
 function translateElement(element, lang) {
   const key = element.getAttribute('data-i18n');
   if (!translations[lang][key]) return;
+
+  // Don't change textContent for <label> or <optgroup> elements (for select groups)
+  if (
+    element.tagName === 'LABEL' ||
+    element.tagName === 'OPTGROUP'
+  ) {
+    // Set the label attribute instead, if present
+    if (element.hasAttribute('label')) {
+      element.label = translations[lang][key];
+    }
+    return;
+  }
 
   if (element.classList.contains('show-details-button')) {
     element.textContent = translations[lang][tableVisible ? 'hideAll' : 'showAll'];

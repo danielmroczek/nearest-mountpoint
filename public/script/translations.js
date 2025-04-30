@@ -22,7 +22,9 @@ const translations = {
         selectNetwork: "Select Network",
         networkEupos: "ASG-EUPOS",
         networkRtk2go: "RTK2Go",
-        country: "Country"
+        country: "Country",
+        freeNetworks: "Free",
+        paidNetworks: "Paid"
     },
     pl: {
         title: "Wyszukiwarka najbliższego punktu NTRIP",
@@ -46,7 +48,9 @@ const translations = {
         selectNetwork: "Wybierz sieć",
         networkEupos: "ASG-EUPOS",
         networkRtk2go: "RTK2Go",
-        country: "Kraj"
+        country: "Kraj",
+        freeNetworks: "Darmowe",
+        paidNetworks: "Płatne"
     },
     // Template for adding new languages
     /*
@@ -55,7 +59,9 @@ const translations = {
         subtitle: "ASG-EUPOS Netzwerk", // Kept for backward compatibility
         selectNetwork: "Netzwerk auswählen",
         networkEupos: "ASG-EUPOS",
-        networkRtk2go: "RTK2Go"
+        networkRtk2go: "RTK2Go",
+        freeNetworks: "Kostenlos",
+        paidNetworks: "Kostenpflichtig"
         // ... add all required translations
     },
     */
