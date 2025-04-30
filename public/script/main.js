@@ -74,6 +74,12 @@ function setupNetworks(networksData) {
     if (existingTable) {
       existingTable.remove();
       tableVisible = false;
+      // Reset show-details-button text
+      const button = document.querySelector('.show-details-button');
+      if (button) {
+        const currentLang = document.documentElement.lang || 'en';
+        button.textContent = translations[currentLang]['showAll'];
+      }
     }
     
     // Reload data for new network
