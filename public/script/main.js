@@ -68,7 +68,10 @@ function setupNetworks(networksData) {
     // Add loading indicator
     const loadingTemplate = document.getElementById('loading-template');
     mountPointDetails.appendChild(loadingTemplate.content.cloneNode(true));
-    
+
+    // Remember if the table was visible before switching network
+    const wasTableVisible = tableVisible;
+
     // Remove existing table if present
     const existingTable = document.querySelector('.mount-points-table');
     if (existingTable) {
@@ -81,10 +84,22 @@ function setupNetworks(networksData) {
         button.textContent = translations[currentLang]['showAll'];
       }
     }
-    
+
     // Reload data for new network
     if (window.userLat && window.userLon) {
-      fetchMountPoints(window.userLat, window.userLon);
+      fetchMountPoints(window.userLat, window.userLon).then(() => {
+        // If the table was visible before, show it again
+        if (wasTableVisible) {
+          const button = document.querySelector('.show-details-button');
+          const table = document.querySelector('.mount-points-table');
+          if (button && table) {
+            tableVisible = true;
+            table.classList.add('visible');
+            const currentLang = document.documentElement.lang || 'en';
+            button.textContent = translations[currentLang]['hideAll'];
+          }
+        }
+      });
     } else {
       // If we don't have user position yet, restart the location search
       initializeLocationSearch();
