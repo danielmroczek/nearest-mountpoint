@@ -176,12 +176,15 @@ function displayMountPointsTable(mountPoints, userLat, userLon) {
   const table = tableTemplate.content.cloneNode(true);
   const tbody = table.querySelector('tbody');
 
-  // Sort mount points by distance
+  // Cache distances for each mount point
+  const distances = new Map();
+  mountPoints.forEach(point => {
+    distances.set(point, getDistance(userLat, userLon, point.latitude, point.longitude));
+  });
+
+  // Sort mount points by cached distance
   mountPoints.sort((a, b) => {
-    // TODO: Cache distances to avoid recalculating
-    const distA = getDistance(userLat, userLon, a.latitude, a.longitude);
-    const distB = getDistance(userLat, userLon, b.latitude, b.longitude);
-    return distA - distB;
+    return distances.get(a) - distances.get(b);
   });
 
   // Check if all mount points have the same country
@@ -204,7 +207,7 @@ function displayMountPointsTable(mountPoints, userLat, userLon) {
   }
 
   mountPoints.forEach(point => {
-    const distance = getDistance(userLat, userLon, point.latitude, point.longitude);
+    const distance = distances.get(point);
     const row = rowTemplate.content.cloneNode(true);
     
     const location = `${point.latitude.toFixed(2)}°, ${point.longitude.toFixed(2)}°`;
