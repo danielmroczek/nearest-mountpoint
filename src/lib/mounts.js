@@ -1,32 +1,32 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fetchUrl, getLocationFromNominatim } from './net.js';
-import { parseNtripSourceTable } from './ntrip.js';
+import fs from "fs/promises";
+import path from "path";
+import { fetchUrl, getLocationFromNominatim } from "./net.js";
+import { parseNtripSourceTable } from "./ntrip.js";
 
 /**
  * Process and save mount points data from an NTRIP source
- * @param {string} name - The name of the NTRIP source
- * @param {string} url - The URL of the NTRIP source
+ * @param {Object} network - The network object containing name, url, and safeFilename
  * @param {Object} options - Command line options
  * @returns {Promise<void>}
  */
 
-export async function processMountPoints(name, url, options) {
-  const outputPath = path.join(options.mountsDir, `${options.safeFilename}.json`);
+export async function processMountPoints(network, options) {
+  const { name, url, safeFilename, ...additionalData } = network;
+  const outputPath = path.join(options.mountsDir, `${safeFilename}.json`);
 
   try {
     // Add common headers for NTRIP requests
     const requestHeaders = {
-      'Ntrip-Version': 'Ntrip/2.0',
-      'User-Agent': 'NtripCaster/1.0',
+      "Ntrip-Version": "Ntrip/2.0",
+      "User-Agent": "NtripCaster/1.0",
     };
 
     const { data, timestamp } = await fetchUrl(url, requestHeaders);
 
     // Save the raw data file if the flag is set
     if (options.saveCsv) {
-      const rawDataPath = path.join(options.mountsDir, `${options.safeFilename}.csv`);
-      await fs.writeFile(rawDataPath, data, 'utf8');
+      const rawDataPath = path.join(options.mountsDir, `${safeFilename}.csv`);
+      await fs.writeFile(rawDataPath, data, "utf8");
       console.log(`Raw data file has been saved as ${rawDataPath}`);
     }
 
@@ -34,10 +34,10 @@ export async function processMountPoints(name, url, options) {
     const { streams, caster, network } = parseNtripSourceTable(data);
 
     if (options.test) {
-      console.log('Running in test mode, limiting to 10 random streams.');
+      console.log("Running in test mode, limiting to 10 random streams.");
       // Limit streams to 10 random elements using splice
       if (streams.length > 10) {
-        streams.sort(() => 0.5 - Math.random()).splice(10);;
+        streams.sort(() => 0.5 - Math.random()).splice(10);
       }
     }
 
@@ -45,10 +45,12 @@ export async function processMountPoints(name, url, options) {
     if (!options.skipPlaces) {
       await enrichMountsWithLocationData(streams, options.nominatimDelay);
     } else {
-      console.log('Skipping place data fetch (--skip-places flag detected)');
+      console.log("Skipping place data fetch (--skip-places flag detected)");
       // If skipping OSM lookup, just use the available data
       for (const stream of streams) {
-        stream.place = `${stream.location || 'Unknown'} (${stream.country || 'Unknown'})`;
+        stream.place = `${stream.location || "Unknown"} (${
+          stream.country || "Unknown"
+        })`;
       }
     }
 
@@ -57,17 +59,17 @@ export async function processMountPoints(name, url, options) {
       source: name,
       sourceUrl: url,
       timestamp: timestamp || new Date().toISOString(),
+      ...additionalData,
       streams,
       caster,
-      network
+      network,
     };
 
     // Save the JSON file
-    await fs.writeFile(outputPath, JSON.stringify(output, null, 2), 'utf8');
+    await fs.writeFile(outputPath, JSON.stringify(output, null, 2), "utf8");
     console.log(`Parsed ${streams.length} mount points saved to ${outputPath}`);
-
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 }
 
@@ -78,37 +80,40 @@ export async function processMountPoints(name, url, options) {
  * @returns {Promise<Array>} Enriched mount points
  */
 export async function enrichMountsWithLocationData(mounts, delay = 1000) {
-  console.log(`Fetching location data from OpenStreetMap (delay: ${delay}ms)...`);
-  
+  console.log(
+    `Fetching location data from OpenStreetMap (delay: ${delay}ms)...`
+  );
+
   for (let i = 0; i < mounts.length; i++) {
     const mount = mounts[i];
-    
+
     // Get location data with stream name for logging
     const locationData = await getLocationFromNominatim(
-      mount.latitude, 
-      mount.longitude, 
-      delay, 
+      mount.latitude,
+      mount.longitude,
+      delay,
       mount.name
     );
-    
+
     // Update the country if it's empty
     if (locationData && !mount.country && locationData.address?.country) {
       mount.country = locationData.address.country;
     }
-    
+
     // Set the place field using display_name directly from Nominatim
-    mount.place = locationData?.display_name || 
-                  `${mount.location || 'Unknown'} (${mount.country || 'Unknown'})`;
-    
+    mount.place =
+      locationData?.display_name ||
+      `${mount.location || "Unknown"} (${mount.country || "Unknown"})`;
+
     // Store the complete Nominatim response
     mount.nominatim = locationData;
-    
+
     // Progress indicator
     if (i % 10 === 0 || i === mounts.length - 1) {
       console.log(`Processed ${i + 1}/${mounts.length} mount points`);
     }
   }
-  
+
   console.log(`Completed processing ${mounts.length} mount points`);
   return mounts;
 }
