@@ -4,22 +4,26 @@
       "name": "ASG-EUPOS",
       "url": "http://system.asgeupos.pl:8086",
       "paid": false,
-      "default": true
+      "default": true,
+      "website": "https://www.asgeupos.pl"
     },
     {
       "name": "RTK2Go",
       "url": "http://www.rtk2go.com:2101",
-      "paid": false
+      "paid": false,
+      "website": "http://rtk2go.com"
     },
     {
       "name": "Nadonet (Nadotech)",
       "url": "http://nadowski.net:8082",
-      "paid": true
+      "paid": true,
+      "website": "https://nado-tech.pl/nadonet/"
     },
     {
       "name": "RtkNet (Art-Geo)",
       "url": "http://rtknet.pl:2101",
-      "paid": true
+      "paid": true,
+      "website": "https://gnss.net.pl/rtknet/"
     }
   ]
 }
