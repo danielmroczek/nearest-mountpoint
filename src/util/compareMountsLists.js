@@ -16,7 +16,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { fetchUrl } from '../lib/net.js';
+import { fetchHttp } from '../lib/net.js';
 import { getDistance } from '../../public/script/geo.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -68,7 +68,7 @@ distances.sort((a, b) => b.distance - a.distance);
  */
 async function getReverseGeocode(lat, lon) {
     const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`;
-    const { data } = await fetchUrl(url, { 'User-Agent': 'NearestMountpoint/1.0' });
+    const { data } = await fetchHttp(url, { 'User-Agent': 'NearestMountpoint/1.0' });
     const jsonData = JSON.parse(data);
     const address = jsonData.address || {};
     return {

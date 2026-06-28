@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { fetchUrl, getLocationFromNominatim } from "./net.js";
+import { fetchNtripV1, getLocationFromNominatim } from "./net.js";
 import { parseNtripSourceTable } from "./ntrip.js";
 
 /**
@@ -21,7 +21,7 @@ export async function processMountPoints(network, options) {
       "User-Agent": "NtripCaster/1.0",
     };
 
-    const { data, timestamp } = await fetchUrl(url, requestHeaders);
+    const { data, timestamp } = await fetchNtripV1(url, requestHeaders);
 
     // Save the raw data file if the flag is set
     if (options.saveCsv) {

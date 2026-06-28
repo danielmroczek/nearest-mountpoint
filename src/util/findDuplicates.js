@@ -15,7 +15,7 @@
  */
 
 import { promises as fs } from 'fs';
-import { fetchUrl } from '../lib/net.js';
+import { fetchHttp } from '../lib/net.js';
 
 /**
  * Adds a delay to respect rate limits when making API calls
@@ -41,7 +41,7 @@ async function fetchLocationData(lat, lon) {
   };
   
   try {
-    const { data } = await fetchUrl(url, headers);
+    const { data } = await fetchHttp(url, headers);
     return JSON.parse(data);
   } catch (e) {
     throw new Error(`Failed to fetch location data: ${e.message}`);
